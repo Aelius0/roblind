@@ -9,22 +9,19 @@
 #include "Principal/Robot.hxx"
 
 namespace Principal {
-void Robot::run()
+void Robot::main()
 {
 //begin of modifiable zone(Cxx.Code)......C/0232bfea-936e-4f41-8e6f-6f38e2da3f28
 // TODO complete code
 //end of modifiable zone(Cxx.Code)........E/0232bfea-936e-4f41-8e6f-6f38e2da3f28
 
-} // end run
+} // end main
 
 
 void Robot::marquer_bloque(int x, int y)
 {
-//begin of modifiable zone(Cxx.Code)......C/d7dc63ab-61f6-4883-8713-cb065b52f12b
-// TODO complete code
-//end of modifiable zone(Cxx.Code)........E/d7dc63ab-61f6-4883-8713-cb065b52f12b
-
-} // end marquer_bloque
+	grille_espace[x][y] = 1;
+}
 
 
 void Robot::marquer_libre(int x, int y)
