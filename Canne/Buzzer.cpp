@@ -6,7 +6,7 @@
 
 
 //class header file
-#include "Canne/Buzzer.hxx"
+#include "Canne/Buzzer.h"
 
 namespace Canne {
 void Buzzer::bip()
