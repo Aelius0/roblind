@@ -26,7 +26,7 @@ void Robot::marquer_bloque(int x, int y)
 
 void Robot::marquer_libre(int x, int y)
 {
-	grille_espace[x][y] = 1;
+	grille_espace[x][y] = 0;
 }
 
 
