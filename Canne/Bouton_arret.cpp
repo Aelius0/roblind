@@ -6,7 +6,7 @@
 
 
 //class header file
-#include "Canne/Bouton_arret.hxx"
+#include "Canne/Bouton_arret.h"
 
 namespace Canne {
 
