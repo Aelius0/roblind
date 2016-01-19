@@ -9,16 +9,27 @@
 #include "Principal/Robot.hxx"
 
 namespace Principal {
+	
+void react()
+{
+	digitalWrite(9, digitalRead(2))
+}
+	
 int main(int argc, char *argv[])
 {
+	
     wiringPiSetup();
+    
+    
     pinMode(9, OUTPUT);
     pinMode(2, INPUT);
     pullUpDnControl(2, PUD_UP);
 
+    int test_event = wiringPiISR(2, INT_EDGE_FALLING, void *react())
+    
     while(true)
     {
-        digitalWrite(9, !digitalRead(2));
+//        digitalWrite(9, !digitalRead(2));
         delay(20);
     }
     return 0;
