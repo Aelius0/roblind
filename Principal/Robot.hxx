@@ -1,4 +1,4 @@
-
+﻿
 #ifndef __Robot_25af486e_96d7_45d7_b476_038f6f2f8d75_H_INCLUDED
 #define __Robot_25af486e_96d7_45d7_b476_038f6f2f8d75_H_INCLUDED
 
@@ -31,10 +31,11 @@ namespace Principal {
 
 
 
+
 class Robot
 {
  public:
-    double resolution;
+    double resolution = 5.0; //résolution en centimètres
     bool en_evitement;
     Canne::Joystick* joystick;
     Canne::Bouton_arret* bouton_arret;
@@ -50,17 +51,21 @@ class Robot
     Capteurs::Laser* laser_droit;
     Bouton_arret_urgence* bouton_arret_urgence;
     Bouton_mode_guidage* bouton_mode_guidage;
-void run();
-void marquer_bloque(int x, int y);
-void marquer_libre(int x, int y);
-void calculer_chemin(double direction);
-
+	
  private:
-    void* grille_espace;
+	const int DIMENSION = 500; //dimensions de la carte en centimètres
+    int* grille_espace[DIMENSION][DIMENSION] = {0};
     double x_local;
     double y_local;
     double o_local;
-    void* chemin_evitement;
+    int* chemin_evitement[];
+	
+	
+void main();
+void marquer_bloque(int x, int y);
+void marquer_libre(int x, int y);
+bool calculer_chemin(double direction);
+
 
 }; //end class Robot
 
