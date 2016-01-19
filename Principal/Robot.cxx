@@ -26,11 +26,8 @@ void Robot::marquer_bloque(int x, int y)
 
 void Robot::marquer_libre(int x, int y)
 {
-//begin of modifiable zone(Cxx.Code)......C/1f8606ca-ea08-47bb-b6db-4eca9d53c3ab
-// TODO complete code
-//end of modifiable zone(Cxx.Code)........E/1f8606ca-ea08-47bb-b6db-4eca9d53c3ab
-
-} // end marquer_libre
+	grille_espace[x][y] = 1;
+}
 
 
 void Robot::calculer_chemin(double direction)
