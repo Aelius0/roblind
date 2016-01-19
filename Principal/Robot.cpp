@@ -9,13 +9,20 @@
 #include "Principal/Robot.hxx"
 
 namespace Principal {
-void Robot::main()
+int main(int argc, char *argv[])
 {
-//begin of modifiable zone(Cxx.Code)......C/0232bfea-936e-4f41-8e6f-6f38e2da3f28
-// TODO complete code
-//end of modifiable zone(Cxx.Code)........E/0232bfea-936e-4f41-8e6f-6f38e2da3f28
+    wiringPiSetup();
+    pinMode(9, OUTPUT);
+    pinMode(2, INPUT);
+    pullUpDnControl(2, PUD_UP);
 
-} // end main
+    while(true)
+    {
+        digitalWrite(9, !digitalRead(2));
+        delay(20);
+    }
+    return 0;
+}
 
 
 void Robot::marquer_bloque(int x, int y)
