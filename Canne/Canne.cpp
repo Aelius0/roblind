@@ -5,6 +5,6 @@
 
 */
 //package header file
-#include "Canne/Canne.hxx"
+#include "Canne/Canne.h"
 namespace Canne {
 } // namespace Canne
