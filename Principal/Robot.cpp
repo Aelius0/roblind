@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
     pinMode(2, INPUT);
     pullUpDnControl(2, PUD_UP);
 
-    int test_event = wiringPiISR(2, INT_EDGE_FALLING, void *react())
+    int test_event = wiringPiISR(2, INT_EDGE_BOTH, void *react())
     
     while(true)
     {
