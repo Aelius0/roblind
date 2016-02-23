@@ -7,9 +7,6 @@
  * Class: Kinect
  */
 
-//owner package header file
-#include "Capteurs.h"
-
 
 namespace Capteurs {
 
