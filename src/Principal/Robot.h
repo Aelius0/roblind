@@ -12,7 +12,6 @@
 #include <pthread.h>
 using namespace std;
 #include "/home/mecatro/Raspberry/usr/include/wiringPi.h"
-#include "../Moteurs/ThreadMoteur.h"
 #include "../Moteurs/Moteur.h"
 #include "../Canne/Joystick.h"
 #include "../Canne/Bouton_arret.h"
@@ -50,9 +49,9 @@ class Robot
     Laser* laser_droit;
     Bouton_arret_urgence* bouton_arret_urgence;
     Bouton_mode_guidage* bouton_mode_guidage;
-    double x_local;
-    double y_local;
-    double o_local;
+    double x;
+    double y;
+    double o; //orientation
     int* chemin_evitement[];
     // 0: vide  1: obstacle  2: trottoir  3: mur
     int grille_espace[DIMENSION][DIMENSION];
@@ -66,5 +65,5 @@ bool calculer_chemin(double direction);
 
 }; //end class Robot
 
-static Robot robot;
+extern Robot robot;
 #endif // __Robot_25af486e_96d7_45d7_b476_038f6f2f8d75_H_INCLUDED

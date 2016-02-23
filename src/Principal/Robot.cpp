@@ -7,16 +7,20 @@
 
 //class header file
 #include "Robot.h"
+#include "../Moteurs/ThreadMoteur.h"
+#include "../Capteurs/ThreadCapteurs.h"
 
 
 
 using namespace std;
-pthread_t motThread;
+pthread_t motThread, capteurThread;
+Robot robot;
 
 int main(int argc, char *argv[])
 {
     cout << "Main robot code" << endl;
     pthread_create(&motThread, NULL, ThreadMoteur, NULL);
+    pthread_create(&capteurThread, NULL, ThreadCapteur, NULL);
 
     wiringPiSetup();
     
@@ -30,8 +34,10 @@ int main(int argc, char *argv[])
     while(true)
     {
 //        digitalWrite(9, !digitalRead(2));
-        delay(20);
+        cout << robot.x<< endl;
+        delay(1000);
     }
+
     return 0;
 }
 
