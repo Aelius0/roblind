@@ -8,8 +8,4 @@
 
 
 
-namespace Capteurs {
-
-
-} // namespace Capteurs
 #endif // __Capteurs_26d18f0f_cea3_43e9_bbed_f6701d04ffda_H_INCLUDED

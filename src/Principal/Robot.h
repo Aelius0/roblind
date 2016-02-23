@@ -7,9 +7,13 @@
  * Class: Robot
  */
 
-//owner package header file
-#include "Principal.h"
-//automatic includes (friends, associated classes, etc)
+//standard include
+#include <iostream>
+#include <pthread.h>
+using namespace std;
+#include "/home/mecatro/Raspberry/usr/include/wiringPi.h"
+#include "../Moteurs/ThreadMoteur.h"
+#include "../Moteurs/Moteur.h"
 #include "../Canne/Joystick.h"
 #include "../Canne/Bouton_arret.h"
 #include "../Canne/Capteur_effort.h"
@@ -17,18 +21,11 @@
 #include "../Canne/Buzzer.h"
 #include "../Canne/Vibreur.h"
 #include "../Capteurs/Kinect.h"
-#include "../Moteurs/Moteur.h"
 #include "../Principal/GPS.h"
 #include "../Principal/Batterie.h"
 #include "../Capteurs/Laser.h"
 #include "../Principal/Bouton_arret_urgence.h"
 #include "../Principal/Bouton_mode_guidage.h"
-#include <iostream>
-using namespace std;
-#include "/home/mecatro/Raspberry/usr/include/wiringPi.h"
-
-
-namespace Principal {
 
 
 #define DIMENSION 500
@@ -45,12 +42,12 @@ class Robot
     Canne::Capteur_presence* capteur_presence;
     Canne::Buzzer* buzzer;
     Canne::Vibreur* vibreur;
-    Capteurs::Kinect* kinect;
-    Moteurs::Moteur* moteur;
+    Kinect* kinect;
+    Moteur* moteur;
     GPS* gps;
     Batterie* batterie;
-    Capteurs::Laser* laser_gauche;
-    Capteurs::Laser* laser_droit;
+    Laser* laser_gauche;
+    Laser* laser_droit;
     Bouton_arret_urgence* bouton_arret_urgence;
     Bouton_mode_guidage* bouton_mode_guidage;
     double x_local;
@@ -69,5 +66,5 @@ bool calculer_chemin(double direction);
 
 }; //end class Robot
 
-} // namespace Principal
+static Robot robot;
 #endif // __Robot_25af486e_96d7_45d7_b476_038f6f2f8d75_H_INCLUDED

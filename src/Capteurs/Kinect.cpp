@@ -8,7 +8,6 @@
 //class header file
 #include "Kinect.h"
 
-namespace Capteurs {
 void Kinect::marquer_obstacles()
 {
 //begin of modifiable zone(Cxx.Code)......C/cb23b0d3-f2e1-4377-9850-3dfb1bf24696
@@ -18,5 +17,3 @@ void Kinect::marquer_obstacles()
 } // end marquer_obstacles
 
 
-
-} // namespace Capteurs

@@ -5,6 +5,3 @@
 
 */
 //package header file
-#include "Capteurs.h"
-namespace Capteurs {
-} // namespace Capteurs

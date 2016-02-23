@@ -8,10 +8,7 @@
  */
 
 //owner package header file
-#include "Capteurs.h"
 
-
-namespace Capteurs {
 
 
 
@@ -27,5 +24,4 @@ void marquer_obstacles();
 
 }; //end class Kinect
 
-} // namespace Capteurs
 #endif // __Kinect_5c6b3e3f_fcd7_44fe_8410_f80405f349c8_H_INCLUDED

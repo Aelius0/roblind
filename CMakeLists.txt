@@ -5,8 +5,7 @@ file(GLOB SRC_LIST src/*/*.cpp)
 
 message(STATUS "${SRC_LIST}=${${SRC_LIST}}")
 
-set(CMAKE_CXX_FLAGS "-lwiringPi -std=c++11")
+set(CMAKE_CXX_FLAGS "-lwiringPi -lpthread -g -std=c++11")
 project(roblind)
 cmake_minimum_required(VERSION 2.8)
 add_executable(${PROJECT_NAME} ${SRC_LIST})
-

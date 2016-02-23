@@ -8,12 +8,6 @@
  */
 
 //owner package header file
-#include "Principal.h"
-
-
-namespace Principal {
-
-
 
 
 class Bouton_mode_guidage
@@ -23,5 +17,4 @@ class Bouton_mode_guidage
 
 }; //end class Bouton_mode_guidage
 
-} // namespace Principal
 #endif // __Bouton_mode_guidage_7d1b2fec_b882_4816_9b10_faf27296ddf8_H_INCLUDED

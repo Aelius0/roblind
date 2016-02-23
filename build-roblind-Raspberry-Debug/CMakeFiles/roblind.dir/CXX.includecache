@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/mecatro/Documents/GIT/roblind/src/Capteurs/Kinect.cpp
+Kinect.h
+/home/mecatro/Documents/GIT/roblind/src/Capteurs/Kinect.h
+
+/home/mecatro/Documents/GIT/roblind/src/Capteurs/Kinect.h
+

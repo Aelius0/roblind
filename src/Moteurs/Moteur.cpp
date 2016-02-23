@@ -8,7 +8,6 @@
 //class header file
 #include "Moteur.h"
 
-namespace Moteurs {
 void Moteur::avancer(double distance)
 {
 //begin of modifiable zone(Cxx.Code)......C/d856e227-fe43-4655-b56c-6f8c69831907
@@ -35,6 +34,3 @@ void Moteur::arreter()
 
 } // end arreter
 
-
-
-} // namespace Moteurs

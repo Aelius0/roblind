@@ -5,6 +5,11 @@
 
 */
 //package header file
-#include "Moteurs.h"
-namespace Moteurs {
-} // namespace Moteurs
+#include "ThreadMoteur.h"
+#include "../Principal/Robot.h"
+#include "Moteur.h"
+
+void *ThreadMoteur (void *)
+{
+   cout<<"Thread moteur started !"<<endl;
+}

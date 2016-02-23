@@ -1,0 +1,2 @@
+/home/pi
+./build-roblind-Raspberry-Default/roblind:./
