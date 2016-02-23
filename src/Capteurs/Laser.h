@@ -8,12 +8,6 @@
  */
 
 //owner package header file
-#include "Capteurs.h"
-
-
-namespace Capteurs {
-
-
 
 
 class Laser
@@ -24,5 +18,4 @@ class Laser
 
 }; //end class Laser
 
-} // namespace Capteurs
 #endif // __Laser_d823234c_cb4f_4f65_8b54_4f687044d141_H_INCLUDED

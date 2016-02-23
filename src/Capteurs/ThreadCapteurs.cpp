@@ -5,6 +5,8 @@
 
 */
 //package header file
-#include "Capteurs.h"
-namespace Capteurs {
-} // namespace Capteurs
+#include"../Principal/Robot.h"
+void *ThreadCapteur (void *)
+{
+   cout<<"Thread capteur started !"<<endl;
+}

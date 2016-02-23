@@ -13,13 +13,6 @@
 #include <string>
 #include <vector>
 
-
-
-namespace Principal {
-
-
-
-
 class GPS
 {
  public:
@@ -32,6 +25,4 @@ double get_direction();
     void* chemin;
 
 }; //end class GPS
-
-} // namespace Principal
 #endif // __GPS_f0416f69_cd1e_454e_85b6_ebab2b213a03_H_INCLUDED

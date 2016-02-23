@@ -8,12 +8,6 @@
  */
 
 //owner package header file
-#include "Moteurs.h"
-
-
-namespace Moteurs {
-
-
 
 
 class Moteur
@@ -28,5 +22,4 @@ void arreter();
 
 }; //end class Moteur
 
-} // namespace Moteurs
 #endif // __Moteur_08bd5c6a_318d_4483_b1cc_e6f4b5f6065b_H_INCLUDED

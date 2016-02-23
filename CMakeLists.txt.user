@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 3.6.0, 2016-01-24T17:29:19. -->
+<!-- Written by QtCreator 3.6.0, 2016-02-23T15:12:41. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -359,7 +359,7 @@
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{bf050779-6e92-4c88-88f3-eb16acc02b33}</value>
    <value type="int" key="ProjectExplorer.Target.ActiveBuildConfiguration">0</value>
    <value type="int" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
-   <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
+   <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">1</value>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.0">
     <value type="QString" key="CMakeProjectManager.CMakeBuildConfiguration.InitialArgument"></value>
     <value type="bool" key="CMakeProjectManager.CMakeBuildConfiguration.UseNinja">false</value>
@@ -598,18 +598,38 @@
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">RemoteLinux.DirectUploadStep</value>
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedFiles">
        <value type="QString">/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Default/roblind</value>
+       <value type="QString">/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Default/roblind</value>
+       <value type="QString">/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Default/roblind</value>
+       <value type="QString">/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Default/roblind</value>
+       <value type="QString">/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Default/roblind</value>
       </valuelist>
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedHosts">
+       <value type="QString">192.168.0.5</value>
+       <value type="QString">192.168.0.5</value>
+       <value type="QString">192.168.0.5</value>
+       <value type="QString">192.168.0.5</value>
        <value type="QString">192.168.0.5</value>
       </valuelist>
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedRemotePaths">
        <value type="QString">.</value>
+       <value type="QString">&lt;/home/mecatro/Raspberry/home/pi&gt;/.</value>
+       <value type="QString">./build-roblind-Raspberry-Default/roblind:/home/mecatro/Raspberry/home/pi/roblind/.</value>
+       <value type="QString">/home/pi/./roblind</value>
+       <value type="QString">/home/pi/./</value>
       </valuelist>
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedSysroots">
        <value type="QString">/home/mecatro/Raspberry</value>
+       <value type="QString">/home/mecatro/Raspberry</value>
+       <value type="QString">/home/mecatro/Raspberry</value>
+       <value type="QString">/home/mecatro/Raspberry</value>
+       <value type="QString">/home/mecatro/Raspberry</value>
       </valuelist>
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedTimes">
-       <value type="QDateTime">2016-01-24T17:22:42</value>
+       <value type="QDateTime">2016-02-23T14:49:26</value>
+       <value type="QDateTime">2016-02-23T14:55:53</value>
+       <value type="QDateTime">2016-02-23T14:59:50</value>
+       <value type="QDateTime">2016-02-23T15:02:37</value>
+       <value type="QDateTime">2016-02-23T15:08:46</value>
       </valuelist>
       <value type="bool" key="RemoteLinux.GenericDirectUploadStep.IgnoreMissingFiles">false</value>
       <value type="bool" key="RemoteLinux.GenericDirectUploadStep.Incremental">true</value>
@@ -719,7 +739,7 @@
      <value type="int">13</value>
      <value type="int">14</value>
     </valuelist>
-    <value type="int" key="PE.EnvironmentAspect.Base">-1</value>
+    <value type="int" key="PE.EnvironmentAspect.Base">1</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">roblind (on Remote Device)</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
@@ -732,7 +752,7 @@
     <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
-    <value type="bool" key="RunConfiguration.UseMultiProcess">false</value>
+    <value type="bool" key="RunConfiguration.UseMultiProcess">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
    </valuemap>

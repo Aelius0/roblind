@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+   <FileVersion major="1" minor="6" />
+   <Project>
+      <Option title="roblind" />
+      <Option makefile_is_custom="1" />
+      <Option compiler="gcc" />
+      <Option virtualFolders="CMake Files\;" />
+      <Build>
+      <Target title="all">
+         <Option working_dir="/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Debug" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Debug/Makefile&quot;  VERBOSE=1 all" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Debug/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Debug/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="edit_cache">
+         <Option working_dir="/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Debug" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Debug/Makefile&quot;  VERBOSE=1 edit_cache" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Debug/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Debug/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="rebuild_cache">
+         <Option working_dir="/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Debug" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Debug/Makefile&quot;  VERBOSE=1 rebuild_cache" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Debug/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Debug/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="roblind">
+         <Option output="/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Debug/roblind" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Debug" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="/home/mecatro/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/../arm-linux-gnueabihf/libc/usr/include/." />
+            <Add directory="/home/mecatro/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/../arm-linux-gnueabihf/libc/usr/include/arm-linux-gnueabihf" />
+            <Add directory="/home/mecatro/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/../lib/gcc/arm-linux-gnueabihf/4.8.3/../../../../arm-linux-gnueabihf/include" />
+            <Add directory="/home/mecatro/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/../lib/gcc/arm-linux-gnueabihf/4.8.3/../../../../arm-linux-gnueabihf/include/c++/4.8.3" />
+            <Add directory="/home/mecatro/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/../lib/gcc/arm-linux-gnueabihf/4.8.3/../../../../arm-linux-gnueabihf/include/c++/4.8.3/arm-linux-gnueabihf/." />
+            <Add directory="/home/mecatro/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/../lib/gcc/arm-linux-gnueabihf/4.8.3/../../../../arm-linux-gnueabihf/include/c++/4.8.3/backward" />
+            <Add directory="/home/mecatro/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/../lib/gcc/arm-linux-gnueabihf/4.8.3/include" />
+            <Add directory="/home/mecatro/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/../lib/gcc/arm-linux-gnueabihf/4.8.3/include-fixed" />
+            <Add directory="/usr/include" />
+            <Add directory="/usr/include/x86_64-linux-gnu" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.9/include" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.9/include-fixed" />
+            <Add directory="/usr/local/include" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Debug/Makefile&quot;  VERBOSE=1 roblind" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Debug/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Debug/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="roblind/fast">
+         <Option output="/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Debug/roblind" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Debug" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="/home/mecatro/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/../arm-linux-gnueabihf/libc/usr/include/." />
+            <Add directory="/home/mecatro/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/../arm-linux-gnueabihf/libc/usr/include/arm-linux-gnueabihf" />
+            <Add directory="/home/mecatro/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/../lib/gcc/arm-linux-gnueabihf/4.8.3/../../../../arm-linux-gnueabihf/include" />
+            <Add directory="/home/mecatro/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/../lib/gcc/arm-linux-gnueabihf/4.8.3/../../../../arm-linux-gnueabihf/include/c++/4.8.3" />
+            <Add directory="/home/mecatro/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/../lib/gcc/arm-linux-gnueabihf/4.8.3/../../../../arm-linux-gnueabihf/include/c++/4.8.3/arm-linux-gnueabihf/." />
+            <Add directory="/home/mecatro/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/../lib/gcc/arm-linux-gnueabihf/4.8.3/../../../../arm-linux-gnueabihf/include/c++/4.8.3/backward" />
+            <Add directory="/home/mecatro/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/../lib/gcc/arm-linux-gnueabihf/4.8.3/include" />
+            <Add directory="/home/mecatro/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/../lib/gcc/arm-linux-gnueabihf/4.8.3/include-fixed" />
+            <Add directory="/usr/include" />
+            <Add directory="/usr/include/x86_64-linux-gnu" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.9/include" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.9/include-fixed" />
+            <Add directory="/usr/local/include" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Debug/Makefile&quot;  VERBOSE=1 roblind/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Debug/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/mecatro/Documents/GIT/roblind/build-roblind-Raspberry-Debug/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      </Build>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Canne/Bouton_arret.cpp">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Canne/Buzzer.cpp">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Canne/Canne.cpp">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Canne/Capteur_effort.cpp">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Canne/Capteur_presence.cpp">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Canne/Joystick.cpp">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Canne/Vibreur.cpp">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Capteurs/Kinect.cpp">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Capteurs/Laser.cpp">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Capteurs/ThreadCapteurs.cpp">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Moteurs/Moteur.cpp">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Moteurs/ThreadMoteur.cpp">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Principal/AStar.cpp">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Principal/Batterie.cpp">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Principal/Bouton_arret_urgence.cpp">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Principal/Bouton_mode_guidage.cpp">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Principal/GPS.cpp">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Principal/Robot.cpp">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Canne/Bouton_arret.h">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Canne/Buzzer.h">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Canne/Canne.h">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Canne/Capteur_effort.h">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Canne/Capteur_presence.h">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Canne/Joystick.h">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Canne/Vibreur.h">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Capteurs/Kinect.h">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Capteurs/Laser.h">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Capteurs/ThreadCapteurs.h">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Moteurs/Moteur.h">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Moteurs/ThreadMoteur.h">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Principal/AStar.h">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Principal/Batterie.h">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Principal/Bouton_arret_urgence.h">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Principal/Bouton_mode_guidage.h">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Principal/GPS.h">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/src/Principal/Robot.h">
+      </Unit>
+      <Unit filename="/home/mecatro/Documents/GIT/roblind/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\" />
+      </Unit>
+   </Project>
+</CodeBlocks_project_file>
