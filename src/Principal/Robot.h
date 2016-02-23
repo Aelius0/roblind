@@ -53,13 +53,12 @@ class Robot
     Capteurs::Laser* laser_droit;
     Bouton_arret_urgence* bouton_arret_urgence;
     Bouton_mode_guidage* bouton_mode_guidage;
-	
- private:
-    int grille_espace[DIMENSION][DIMENSION];
     double x_local;
     double y_local;
     double o_local;
     int* chemin_evitement[];
+    // 0: vide  1: obstacle  2: trottoir  3: mur
+    int grille_espace[DIMENSION][DIMENSION];
 	
 	
 void main();
