@@ -1,10 +1,4 @@
 
-/*
- * File Type: Class body
- * Class: Robot
- */
-
-
 //class header file
 #include "Robot.h"
 #include "../Moteurs/ThreadMoteur.h"
@@ -15,6 +9,7 @@ using namespace std;
 pthread_t motThread, capteurThread;
 Robot robot;
 
+/*
 int main(int argc, char *argv[])
 {
     cout << "Main robot code" << endl;
@@ -39,7 +34,7 @@ int main(int argc, char *argv[])
 
     return 0;
 }
-
+*/
 
 
 bool Robot::calculer_chemin(double direction)

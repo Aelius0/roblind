@@ -8,6 +8,9 @@
 #include <math.h>
 #include <ctime>
 #include "AStar.h"
+#include "Robot.h"
+#define dir 8
+#define CM_TO_PAS_CODEUR 1.0
 
 using namespace std;
 
@@ -17,13 +20,15 @@ static int map[n][m];
 static int closed_nodes_map[n][m]; // map of closed (tried-out) nodes
 static int open_nodes_map[n][m]; // map of open (not-yet-tried) nodes
 static int dir_map[n][m]; // map of directions
-const int dir=8; // number of possible directions to go at any position
-// if dir==4
-//static int dx[dir]={1, 0, -1, 0};
-//static int dy[dir]={0, 1, 0, -1};
-// if dir==8
+
 static int dx[dir]={1, 1, 0, -1, -1, -1, 0, 1};
 static int dy[dir]={0, 1, 1, 1, 0, -1, -1, -1};
+
+const int dirToDegree[dir] = {0, -45, -90, -135, -180, -225, -270, -315};
+const double dirToDistance[dir] = {RESOLUTION, RESOLUTION*sqrt(2), RESOLUTION, RESOLUTION*sqrt(2), RESOLUTION, RESOLUTION*sqrt(2), RESOLUTION, RESOLUTION*sqrt(2)};
+
+
+vector< vector<int> > path;
 
 class node
 {
@@ -207,6 +212,139 @@ string pathFind( const int & xStart, const int & yStart,
     return ""; // no route found
 }
 
+
+double rotation(string s)
+{
+    int pos = 0;
+    double sum = 0.0;
+    while (pos < s.length())
+    {
+        sum += dirToDegree[s[pos] - '0'];
+        pos += 1;
+    }
+    return sum/s.length();
+}
+
+int translation(string s)
+{
+    int pos = 0;
+    int x = 0;
+    int y = 0;
+    while (pos < s.length())
+    {
+        switch(s[pos]):
+        case 0: {x += 1; break;}
+        case 1: {x += 1; y -= 1; break;}
+        case 2: {y -= 1; break;}
+        case 3: {x -= 1; y -= 1; break;}
+        case 4: {x -= 1; break;}
+        case 5: {x -= 1; y += 1; break;}
+        case 6: {y += 1; break;}
+        case 7: {x += 1; y += 1; break;}
+
+        pos += 1;
+    }
+    return static_cast<int>(sqrt(x*x + y*y));
+}
+
+//void updatePath(int xA, int yA, int xB, int yB)
+void updatePath(string s)
+{
+//    string s = pathFind(xA, yA, xB, yB);
+    if (s.length() > 0)
+    {
+        double current_o = robot.o;
+        int prevPos = 0;
+        int pos = 0;
+        int last1 = -1; // last char analysed
+        int motif = 0;
+        while (pos < s.length())
+        {
+            if (pos == prevPos)
+            {
+                last1 = s[pos] - '0';
+                pos += 1;
+            }
+            else if (pos == prevPos + 1)
+            {
+                int i = s[pos] - '0';
+                if (i == last1)
+                {
+                    while (pos < s.length() && s[pos] - '0' == i)
+                    {
+                        pos += 1;
+                    }
+                }
+                else // i != last1 -- Cas particulier de motif
+                {
+                    while (pos + 2 < s.length() && s[pos+1] - '0' == last1 && s[pos+2] - '0' == i)
+                    {
+                        pos += 2;
+                    }
+                    if (pos + 1 < s.length() && s[pos+1] == last1) pos += 1 ;
+                    // ADD ROTATION TO QUEUE
+                    path.push_back(vector<int> (1, static_cast<int>(orientation - current_o)));
+                    // ADD TRANSLATION TO QUEUE
+                    path.push_back(vector<int> (0, static_cast<int>(RESOLUTION*translation(s.substr(prevPos, pos - prevPos))*CM_TO_PAS_CODEUR)));
+                    pos += 1;
+                    prevPos = pos;
+                }
+            }
+            else if (motif > 0)
+            {
+                bool test = true;
+                int len = pos - prevPos;
+                while (test && pos + len < s.length())
+                {
+                    for (int i = 0; i < len; i++)
+                    {
+                        if (s[pos+i] != s[prevPos+i]) test = false;
+                    }
+                    if (test)
+                    {
+                        pos += len;
+                        motif += 1;
+                    }
+                }
+
+            }
+
+            else
+            {
+                int i = s[pos] - '0';
+                int tempPos = pos;
+                while (pos - tempPos < tempPos - prevPos && s[pos] != i)
+                {
+
+                }
+            }
+
+/*
+            if (last1 == i || last2 == i)
+                counter += 1;
+            else
+            {
+                cout << "TRANS : " << (RESOLUTION*dirToDistance[current]*counter*CM_TO_PAS_CODEUR) << "\n";
+                cout << "ROT : " << dirToDegree[current] << "\n";
+                path.push_back(vector<int> (0, static_cast<int>(RESOLUTION*dirToDistance[current]*counter*CM_TO_PAS_CODEUR))); // TRANSLATION
+                path.push_back(vector<int> (1, static_cast<int>(robot.o + dirToDegree[current]))); // ROTATION
+                current = i;
+                counter = 1;
+            }
+            last2 = last1;
+            last1 = i;
+            pos += 1;
+            */
+
+        }
+    }
+    
+}
+
+
+
+
+
 int main()
 {
     srand(time(NULL));
@@ -247,12 +385,6 @@ int main()
     // get the route
     clock_t start = clock();
     string route=pathFind(xA, yA, xB, yB);
-    if(route=="") cout<<"An empty route generated!"<<endl;
-    clock_t end = clock();
-    double time_elapsed = double(end - start);
-    cout<<"Time to calculate the route (ms): "<<time_elapsed<<endl;
-    cout<<"Route:"<<endl;
-    cout<<route<<endl<<endl;
 
     // follow the route on the map and display it
     if(route.length()>0)
@@ -288,6 +420,14 @@ int main()
             cout<<endl;
         }
     }
+    clock_t end = clock();
+    double time_elapsed = double(end - start);
+    cout<<"Time to calculate the route (ms): "<<time_elapsed<<endl;
+    cout<<"Route:"<<endl;
+    cout<<route<<endl<<endl;
+
+    updatePath(route);
+
     getchar(); // wait for a (Enter) keypress
     return(0);
 }

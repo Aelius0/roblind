@@ -11,7 +11,7 @@
 #include <iostream>
 #include <pthread.h>
 using namespace std;
-#include "/home/mecatro/Raspberry/usr/include/wiringPi.h"
+//#include "/home/mecatro/Raspberry/usr/include/wiringPi.h"
 #include "../Moteurs/Moteur.h"
 #include "../Canne/Joystick.h"
 #include "../Canne/Bouton_arret.h"
@@ -28,12 +28,12 @@ using namespace std;
 
 
 #define DIMENSION 500
+#define RESOLUTION 5.0
 
 
 class Robot
 {
  public:
-    double resolution = 5.0; //résolution en centimètres
     bool en_evitement;
     Canne::Joystick* joystick;
     Canne::Bouton_arret* bouton_arret;
@@ -66,4 +66,5 @@ bool calculer_chemin(double direction);
 }; //end class Robot
 
 extern Robot robot;
+extern vector< vector<int> > path;
 #endif // __Robot_25af486e_96d7_45d7_b476_038f6f2f8d75_H_INCLUDED
