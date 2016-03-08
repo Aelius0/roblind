@@ -222,29 +222,32 @@ double rotation(string s)
         sum += dirToDegree[s[pos] - '0'];
         pos += 1;
     }
+    cout << "   ROTATION : " << sum/s.length() << "\n";
     return sum/s.length();
 }
 
-int translation(string s)
+double translation(string s)
 {
     int pos = 0;
     int x = 0;
     int y = 0;
     while (pos < s.length())
     {
-        switch(s[pos]):
-        case 0: {x += 1; break;}
-        case 1: {x += 1; y -= 1; break;}
-        case 2: {y -= 1; break;}
-        case 3: {x -= 1; y -= 1; break;}
-        case 4: {x -= 1; break;}
-        case 5: {x -= 1; y += 1; break;}
-        case 6: {y += 1; break;}
-        case 7: {x += 1; y += 1; break;}
-
+        switch(s[pos] - '0')
+        {
+            case 0: {x += 1; break;}
+            case 1: {x += 1; y -= 1; break;}
+            case 2: {y -= 1; break;}
+            case 3: {x -= 1; y -= 1; break;}
+            case 4: {x -= 1; break;}
+            case 5: {x -= 1; y += 1; break;}
+            case 6: {y += 1; break;}
+            case 7: {x += 1; y += 1; break;}
+        }
         pos += 1;
     }
-    return static_cast<int>(sqrt(x*x + y*y));
+    cout << "   TRANSLATION : " << (sqrt(x*x + y*y)) << " -- x" << x << " -y" << y << "\n"; // DEBUG
+    return (sqrt(x*x + y*y));
 }
 
 //void updatePath(int xA, int yA, int xB, int yB)
@@ -258,6 +261,8 @@ void updatePath(string s)
         int pos = 0;
         int last1 = -1; // last char analysed
         int motif = 0;
+        string dirOffset = "";
+        int cpt = 0; // TODO REMOVE
         while (pos < s.length())
         {
             if (pos == prevPos)
@@ -267,6 +272,7 @@ void updatePath(string s)
             }
             else if (pos == prevPos + 1)
             {
+                cout << "DEBUG-1\n" ; // DEBUG
                 int i = s[pos] - '0';
                 if (i == last1)
                 {
@@ -277,21 +283,38 @@ void updatePath(string s)
                 }
                 else // i != last1 -- Cas particulier de motif
                 {
+                    /*
+                    if (pos + 1 < s.length() && s[pos+1] == i)
+                    {
+                        while (pos + 1 < s.length() && s[pos+1] == i)
+                        {
+                            // MOTIF TYPE ab*
+                        }
+                    }
+                    */
+
                     while (pos + 2 < s.length() && s[pos+1] - '0' == last1 && s[pos+2] - '0' == i)
                     {
                         pos += 2;
                     }
                     if (pos + 1 < s.length() && s[pos+1] == last1) pos += 1 ;
-                    // ADD ROTATION TO QUEUE
-                    path.push_back(vector<int> (1, static_cast<int>(orientation - current_o)));
-                    // ADD TRANSLATION TO QUEUE
-                    path.push_back(vector<int> (0, static_cast<int>(RESOLUTION*translation(s.substr(prevPos, pos - prevPos))*CM_TO_PAS_CODEUR)));
+                    if (pos - prevPos == 1 && dirOffset.length() == 0)
+                        dirOffset = s[pos];
+                    else
+                    {
+                        // ADD ROTATION TO QUEUE
+                        path.push_back(vector<int> (1, static_cast<int>(rotation(dirOffset + s.substr(prevPos, pos - prevPos)) - current_o)));
+                        // ADD TRANSLATION TO QUEUE
+                        path.push_back(vector<int> (0, static_cast<int>(RESOLUTION*translation(dirOffset + s.substr(prevPos, pos - prevPos))*CM_TO_PAS_CODEUR)));
+                        dirOffset = "";
+                    }
                     pos += 1;
                     prevPos = pos;
                 }
             }
             else if (motif > 0)
             {
+                cout << "DEBUG-2\n" ; // DEBUG
                 bool test = true;
                 int len = pos - prevPos;
                 while (test && pos + len < s.length())
@@ -307,35 +330,64 @@ void updatePath(string s)
                     }
                 }
 
-            }
+                // ADD ROTATION TO QUEUE
+                path.push_back(vector<int> (1, static_cast<int>(rotation(dirOffset + s.substr(prevPos, len * motif)) - current_o)));
+                // ADD TRANSLATION TO QUEUE
+                path.push_back(vector<int> (0, static_cast<int>(RESOLUTION*translation(dirOffset + s.substr(prevPos, len * motif))*CM_TO_PAS_CODEUR)));
+                dirOffset = "";
 
+                motif = 0 ;
+            }
             else
             {
-                int i = s[pos] - '0';
+                cout << "DEBUG-3\n" ; // DEBUG
+                int i = s[pos-1] - '0';
                 int tempPos = pos;
-                while (pos - tempPos < tempPos - prevPos && s[pos] != i)
+                while (tempPos - pos < pos - prevPos - 1 && tempPos + 1 < s.length() && s[tempPos + 1] == i)
                 {
+                    tempPos += 1 ;
+                }
+                if (tempPos + 1 < s.length() && s[tempPos+1] == s[pos])
+                {
+                    if (tempPos - pos == pos - prevPos - 1)
+                        motif = 1;
+                    else
+                    {
+                        // ADD ROTATION TO QUEUE
+                        path.push_back(vector<int> (1, static_cast<int>(rotation(dirOffset + s.substr(prevPos, 2*pos - prevPos - tempPos)) - current_o)));
+                        // ADD TRANSLATION TO QUEUE
+                        path.push_back(vector<int> (0, static_cast<int>(RESOLUTION*translation(dirOffset + s.substr(prevPos, 2*pos - prevPos - tempPos))*CM_TO_PAS_CODEUR)));
+                        dirOffset = "";
 
+                        prevPos = 2*pos - tempPos ;
+                        if (pos - prevPos > 1)
+                            motif = 1 ;
+                    }
+                }
+                else
+                {
+                    // ADD ROTATION TO QUEUE
+                    path.push_back(vector<int> (1, static_cast<int>(rotation(dirOffset + s.substr(prevPos, pos - prevPos + 1)) - current_o)));
+                    // ADD TRANSLATION TO QUEUE
+                    path.push_back(vector<int> (0, static_cast<int>(RESOLUTION*translation(dirOffset + s.substr(prevPos, pos - prevPos + 1))*CM_TO_PAS_CODEUR)));
+                    dirOffset = "";
+
+                    pos += 1;
+                    prevPos = pos;
                 }
             }
-
-/*
-            if (last1 == i || last2 == i)
-                counter += 1;
-            else
-            {
-                cout << "TRANS : " << (RESOLUTION*dirToDistance[current]*counter*CM_TO_PAS_CODEUR) << "\n";
-                cout << "ROT : " << dirToDegree[current] << "\n";
-                path.push_back(vector<int> (0, static_cast<int>(RESOLUTION*dirToDistance[current]*counter*CM_TO_PAS_CODEUR))); // TRANSLATION
-                path.push_back(vector<int> (1, static_cast<int>(robot.o + dirToDegree[current]))); // ROTATION
-                current = i;
-                counter = 1;
+            if (cpt < 100) {
+                cout << pos << " ";
+                cpt += 1;
             }
-            last2 = last1;
-            last1 = i;
-            pos += 1;
-            */
+        }
 
+        if (pos != prevPos) {
+            // ADD FINAL ROTATION TO QUEUE
+            path.push_back(vector<int> (1, static_cast<int>(rotation(dirOffset + s.substr(prevPos, pos - prevPos)) - current_o)));
+            // ADD FINAL TRANSLATION TO QUEUE
+            path.push_back(vector<int> (0, static_cast<int>(RESOLUTION*translation(dirOffset + s.substr(prevPos, pos - prevPos))*CM_TO_PAS_CODEUR)));
+            dirOffset = "";
         }
     }
     
