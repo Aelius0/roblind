@@ -8,11 +8,14 @@ void *ThreadMoteur (void *)
    cout<<"Thread moteur started !"<<endl;
    QCoreApplication a(argc, argv);
    Ckangaroo baseRoulante("/dev/ttyAMA0");
+   int _pos = 0;
    while(true)
    {
        if (active) {
            err = baseRoulante.getPosition(m, position);
            if (!err && *position >= lastCmd) {
+               grille.avancerRobot(*position - _pos);
+               _pos = *position;
                if (path.size() == 0)
                    active = false;          // TODO : vibrer
                else {
