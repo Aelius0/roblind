@@ -3,15 +3,6 @@
 #include <iomanip>
 using namespace std;
 
-enum nature_sol : int {
-	RAS= 0,
-	OBSTACLE=1,
-	MUR=2,
-	CHAUSSEE=3
-};
-
-struct incorrectCoordonnees{};
-
 class Grille{
 
 private:

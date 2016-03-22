@@ -45,7 +45,6 @@ class Robot
     Batterie* batterie;
     Laser* laser_gauche;
     Laser* laser_droit;
-
     Bouton_arret_urgence* bouton_arret_urgence;
     Bouton_mode_guidage* bouton_mode_guidage;
     double x;
@@ -55,6 +54,8 @@ class Robot
     // 0: vide  1: obstacle  2: trottoir  3: mur
     Grille* grille_espace;
 	
+    double hauteurLaser = 10; // TODO : fix
+    double hauteurKinect = 15; // TODO : fix
 
     void avancerRobot(int dist);
     void main();
