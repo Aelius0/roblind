@@ -240,9 +240,7 @@ int main(){
 	/*TRANSLATION DE LA GRILLE*/
 	
 	cout << "Translation de la grille.\n";
-	essai->translaterRepereUsuel(1,1);
-	essai->afficher();
-	essai->translaterRepereGrille(1,-1);
+	essai->translaterRepereGrille(1,1);
 	essai->afficher();
 	
 
