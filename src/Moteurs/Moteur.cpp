@@ -1,4 +1,3 @@
-
 /*
  * File Type: Class body
  * Class: Moteur
