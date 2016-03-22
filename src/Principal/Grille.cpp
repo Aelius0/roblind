@@ -96,83 +96,6 @@ public:
 
 	}
 
-	void translaterRepereUsuel(int translationx, int translationy){
-
-		/* IDEE : ON PARCOURT LE TABLEAU ET A CHAQUE CASE EST ATTRIBUEE SA VALEUR FINALE
-		 * SI LA CASE DOIT PREALABLEMENT ATTRIBUER UNE VALEUR, CE DEVRA ETRE FAIT AVANT.
-		 * LE TEST CI-DESSOUS DETERMINE LE SENS DE PARCOURS
-		 * */
-
-			int etat;
-
-			/*SENS DE PARCOURS SELON X*/
-			if(translationx>=0 && translationy>=0){etat=1;}
-			else if(translationx>=0 && translationy<0){etat=2;}
-			else if(translationx<0 && translationy>=0){etat=3;}
-			else if(translationx<0 && translationy<0){etat=4;}
-			cout << "Etat = " << etat << "\n";
-
-		/* ON PEUT ALORS TRANSLATER LE TABLEAU
-		 * SELON LES PARAMETRES CALCULES
-		 * */
-
-		switch(etat){
-		case 1: cout << "Etat 1\n";
-			for(int i=0;i<taillex_;i++){
-					for(int j=tailley_-1;j>=0;j--){
-						if(i+translationx>=0
-						&& i+translationx<taillex_
-						&& j-translationy>=0
-						&& j-translationy<tailley_){
-							grille_[i][j]=grille_[i+translationx][j-translationy];
-						}
-						else{grille_[i][j]=RAS;}
-					}
-				}
-				break;
-		case 2: cout << "Etat 2\n";
-			for(int i=taillex_-1;i>=0;i--){
-					for(int j=tailley_-1;j>=0;j--){
-						if(i+translationx>=0
-						&& i+translationx<taillex_
-						&& j-translationy>=0
-						&& j-translationy<tailley_){
-							grille_[i][j]=grille_[i+translationx][j-translationy];
-						}
-						else{grille_[i][j]=RAS;}
-					}
-				}
-				break;
-		case 3: cout << "Etat 3\n";
-			for(int i=0;i<taillex_;i++){
-					for(int j=0;j<tailley_;j++){
-						if(i+translationx>=0
-						&& i+translationx<taillex_
-						&& j-translationy>=0
-						&& j-translationy<tailley_){
-							grille_[i][j]=grille_[i+translationx][j-translationy];
-						}
-						else{grille_[i][j]=RAS;}
-					}
-				}
-				break;
-		case 4: cout << "Etat 4\n";
-			for(int i=taillex_-1;i>=0;i--){
-					for(int j=0;j<tailley_;j++){
-						if(i+translationx>=0
-						&& i+translationx<taillex_
-						&& j-translationy>=0
-						&& j-translationy<tailley_){
-							grille_[i][j]=grille_[i+translationx][j-translationy];
-						}
-						else{grille_[i][j]=RAS;}
-					}
-				}
-				break;
-		default: cout << "Probleme\n";
-		}
-	}
-
 	void translaterRepereGrille(int translationx, int translationy){
 
 		/* IDEE : ON PARCOURT LE TABLEAU ET A CHAQUE CASE EST ATTRIBUEE SA VALEUR FINALE
@@ -262,7 +185,7 @@ public:
 			}
 		}
 		catch(incorrectCoordonnees& e){
-			cout << "Les coordonnees rentrées sont incorrectes.\n";
+			cout << "Les coordonnees rentrÃ©es sont incorrectes.\n";
 		}
 	}
 
@@ -280,7 +203,7 @@ public:
 			return result;
 		}
 		catch(incorrectCoordonnees& e){
-			cout << "Les coordonnees rentrées sont incorrectes.\n";
+			cout << "Les coordonnees rentrÃ©es sont incorrectes.\n";
 		}
 
 	}
@@ -316,7 +239,7 @@ public:
 		grille_ = new Grille(resolutionX,resolutionY,tailleX,tailleY);
 
 		/*PLACMENT DU ROBOT SUR LA GRILLE*/
-		orientation_=0; // Le robot est dirigé vers le haut de la grille
+		orientation_=0; // Le robot est dirigÃ© vers le haut de la grille
 		vitesse_=0;
 		bordureX_=bordureX;
 		bordureY_=bordureY;
