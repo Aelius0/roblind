@@ -44,6 +44,7 @@ class Robot
     Batterie* batterie;
     Laser* laser_gauche;
     Laser* laser_droit;
+
     Bouton_arret_urgence* bouton_arret_urgence;
     Bouton_mode_guidage* bouton_mode_guidage;
     double x;
@@ -51,7 +52,7 @@ class Robot
     double o; //orientation
     int* chemin_evitement[];
     // 0: vide  1: obstacle  2: trottoir  3: mur
-    int grille_espace[DIMENSION][DIMENSION];
+    Grille* grille_espace;
 	
 	
 void main();

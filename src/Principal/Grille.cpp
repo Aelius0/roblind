@@ -295,6 +295,7 @@ public:
 
 };
 
+/*
 class Robot{
 
 private:
@@ -310,12 +311,10 @@ private:
 public:
 	Robot(int tailleX, int tailleY, double resolutionX, double resolutionY, int bordureX, int bordureY){
 
-		cout << "Creation du robot.\n";
+        cout << "Creation du robot.\n";
 
-		/*CREATION ET INITIALISATION DE LA GRILLE ASSOCIEE*/
 		grille_ = new Grille(resolutionX,resolutionY,tailleX,tailleY);
 
-		/*PLACMENT DU ROBOT SUR LA GRILLE*/
 		orientation_=0; // Le robot est dirigé vers le haut de la grille
 		vitesse_=0;
 		bordureX_=bordureX;
@@ -340,8 +339,7 @@ public:
 		delete grille_;
 		cout << "Le robot est detruit.\n";
 	}
-
-	/*GETTERS*/
+/*
 	double getPositionX(){return positionX_;}
 	double getPositionY(){return positionY_;}
 	double getPositionXIni(){return positionXIni_;}
@@ -356,7 +354,6 @@ public:
 	double getOrientation(){return orientation_;}
 	Grille* getGrille(){return grille_;}
 
-	/*SETTERS*/
 	void setPositionX(double newPositionX){
 		positionX_=newPositionX;
         caseX_= static_cast<int>(positionX_/(grille_->getResolutionX()));
@@ -368,34 +365,27 @@ public:
 	void setVitesse(double newVitesse){vitesse_=newVitesse;}
 	void setOrientation(double newOrientation){orientation_=newOrientation;}
 
-	/*TRAITEMENT*/
-	void actualiserLaser(double inclinaison, double distance){
+    void actualiserLaser(double inclinaison, double distance){
 
-		/*CALCUL DE LA DISTANCE THEORIE ATTENDUE*/
-		double distanceTheorique = hauteurLaser_ / cos(inclinaison);
+        double distanceTheorique = hauteurLaser_ / cos(inclinaison);
 
-		/*COMPARAISON AVEC LA DISTANCE MESUREE*/
-		double deltaTheorique = distance - distanceTheorique;
+        double deltaTheorique = distance - distanceTheorique;
 
-		/*DETERMINATION DE L'EMPLACEMENT SUR LA GRILLE*/
-		double projectionLaterale = distance * sin(inclinaison);
+        double projectionLaterale = distance * sin(inclinaison);
 
-			/*DETERMINISATION DE LA POSITION*/
-			double positionObstacleXrel = - projectionLaterale * sin(orientation_);
-			double positionObstacleYrel = - projectionLaterale * cos(orientation_);
-			double positionObstacleXabs = positionX_+positionObstacleXrel;
-			double positionObstacleYabs = positionY_+positionObstacleYrel;
+            double positionObstacleXrel = - projectionLaterale * sin(orientation_);
+            double positionObstacleYrel = - projectionLaterale * cos(orientation_);
+            double positionObstacleXabs = positionX_+positionObstacleXrel;
+            double positionObstacleYabs = positionY_+positionObstacleYrel;
 
-			/*DETERMINATION DE LA CASE CORRESPONDANTE*/
-			int caseObstacleX = floor(positionObstacleXabs/(grille_->getResolutionX()));
-			int caseObstacleY = floor(positionObstacleYabs/(grille_->getResolutionY()));
+            int caseObstacleX = floor(positionObstacleXabs/(grille_->getResolutionX()));
+            int caseObstacleY = floor(positionObstacleYabs/(grille_->getResolutionY()));
 
-		/*ECRITURE DE L'OBSTACLE SUR LA GRILLE*/
-		if(deltaTheorique>0){grille_->set(caseObstacleX,caseObstacleY,OBSTACLE);}
-		else{grille_->set(caseObstacleX,caseObstacleY,CHAUSSEE);}
+        if(deltaTheorique>0){grille_->set(caseObstacleX,caseObstacleY,OBSTACLE);}
+        else{grille_->set(caseObstacleX,caseObstacleY,CHAUSSEE);}
 
-		}
-
+        }
+*/
 	};
 
 

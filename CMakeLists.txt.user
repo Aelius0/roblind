@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 3.6.0, 2016-02-23T15:12:41. -->
+<!-- Written by QtCreator 3.6.0, 2016-03-22T14:49:52. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -611,11 +611,11 @@
        <value type="QString">192.168.0.5</value>
       </valuelist>
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedRemotePaths">
-       <value type="QString">.</value>
        <value type="QString">&lt;/home/mecatro/Raspberry/home/pi&gt;/.</value>
        <value type="QString">./build-roblind-Raspberry-Default/roblind:/home/mecatro/Raspberry/home/pi/roblind/.</value>
-       <value type="QString">/home/pi/./roblind</value>
+       <value type="QString">.</value>
        <value type="QString">/home/pi/./</value>
+       <value type="QString">/home/pi/./roblind</value>
       </valuelist>
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedSysroots">
        <value type="QString">/home/mecatro/Raspberry</value>
@@ -625,11 +625,11 @@
        <value type="QString">/home/mecatro/Raspberry</value>
       </valuelist>
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedTimes">
-       <value type="QDateTime">2016-02-23T14:49:26</value>
        <value type="QDateTime">2016-02-23T14:55:53</value>
        <value type="QDateTime">2016-02-23T14:59:50</value>
-       <value type="QDateTime">2016-02-23T15:02:37</value>
+       <value type="QDateTime">2016-02-23T14:49:26</value>
        <value type="QDateTime">2016-02-23T15:08:46</value>
+       <value type="QDateTime">2016-02-23T15:02:37</value>
       </valuelist>
       <value type="bool" key="RemoteLinux.GenericDirectUploadStep.IgnoreMissingFiles">false</value>
       <value type="bool" key="RemoteLinux.GenericDirectUploadStep.Incremental">true</value>

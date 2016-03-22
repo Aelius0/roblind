@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
 {
     cout << "Main robot code" << endl;
     wiringPiSetup();
+    grille = new Grille(resolutionX,resolutionY,tailleX,tailleY);
     pthread_create(&motThread, NULL, ThreadMoteur, NULL);
     pthread_create(&capteurThread, NULL, ThreadCapteur, NULL);
 
