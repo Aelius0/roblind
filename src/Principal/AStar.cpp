@@ -1,4 +1,27 @@
+/*
+ * AStar.c
+ * 
+ * Copyright 2016 Matthieu <matthieu@Matthieu-M4500>
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301, USA.
+ * 
+ * 
+ */
 
+#include "AStar.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <iostream>
@@ -7,251 +30,77 @@
 #include <string>
 #include <math.h>
 #include <ctime>
-#include "AStar.h"
-#include "Robot.h"
-#define dir 8
-#define CM_TO_PAS_CODEUR 1.0
 
 using namespace std;
 
-const int n=100; // horizontal size of the map
-const int m=100; // vertical size size of the map
-static int map[n][m];
-static int closed_nodes_map[n][m]; // map of closed (tried-out) nodes
-static int open_nodes_map[n][m]; // map of open (not-yet-tried) nodes
-static int dir_map[n][m]; // map of directions
+#define INFTY 100000
 
-static int dx[dir]={1, 1, 0, -1, -1, -1, 0, 1};
-static int dy[dir]={0, 1, 1, 1, 0, -1, -1, -1};
+#define OPEN 1
+#define CLOSE 0
 
-const int dirToDegree[dir] = {0, -45, -90, -135, -180, -225, -270, -315};
-const double dirToDistance[dir] = {RESOLUTION, RESOLUTION*sqrt(2), RESOLUTION, RESOLUTION*sqrt(2), RESOLUTION, RESOLUTION*sqrt(2), RESOLUTION, RESOLUTION*sqrt(2)};
+#define dir 8
+#define X 0
+#define Y 1
+
+int dx[dir]={1, 1, 0, -1, -1, -1,  0,  1};
+int dy[dir]={0, 1, 1,  1,  0, -1, -1, -1};
 
 
-vector< vector<int> > path;
+typedef struct {
+	int x;
+	int y;
+	float gscore;
+	float fscore;
+}node;
 
-class node
+
+
+static int cameFrom[n][m][2];
+static node set[2][1000000];
+static int indice[2];
+//destination
+static int goalX, goalY;
+
+float distance (int startx, int starty, int endx, int endy)
 {
-    // current position
-    int xPos;
-    int yPos;
-    // total distance already travelled to reach the node
-    int level;
-    // priority=level+remaining distance estimate
-    int priority;  // smaller: higher priority
-
-    public:
-        node(int xp, int yp, int d, int p)
-            {xPos=xp; yPos=yp; level=d; priority=p;}
-
-        int getxPos() const {return xPos;}
-        int getyPos() const {return yPos;}
-        int getLevel() const {return level;}
-        int getPriority() const {return priority;}
-
-        void updatePriority(const int & xDest, const int & yDest)
-        {
-             priority=level+estimate(xDest, yDest)*10; //A*
-        }
-
-        // give better priority to going strait instead of diagonally
-        void nextLevel(const int & i) // i: direction
-        {
-             level+=(dir==8?(i%2==0?10:14):10);
-        }
-
-        // Estimation function for the remaining distance to the goal.
-        const int & estimate(const int & xDest, const int & yDest) const
-        {
-            static int xd, yd, d;
-            xd=xDest-xPos;
-            yd=yDest-yPos;
-
-            // Euclidian Distance
-            d=static_cast<int>(sqrt(xd*xd+yd*yd));
-
-            // Manhattan distance
-            //d=abs(xd)+abs(yd);
-
-            // Chebyshev distance
-            //d=max(abs(xd), abs(yd));
-
-            return(d);
-        }
-};
-
-// Determine priority (in the priority queue)
-bool operator<(const node & a, const node & b)
-{
-  return a.getPriority() > b.getPriority();
+	//~ return abs(startx - endx) + abs(starty - endy);
+	return sqrt((startx - endx)*(startx - endx)+(starty - endy)*(starty - endy));
 }
 
-// A-star algorithm.
-// The route returned is a string of direction digits.
-string pathFind( const int & xStart, const int & yStart,
-                 const int & xFinish, const int & yFinish )
+int getCurrent(int s)
 {
-    static priority_queue<node> pq[2]; // list of open (not-yet-tried) nodes
-    static int pqi; // pq index
-    static node* n0;
-    static node* m0;
-    static int i, j, x, y, xdx, ydy;
-    static char c;
-    pqi=0;
-
-    // reset the node maps
-    for(y=0;y<m;y++)
-    {
-        for(x=0;x<n;x++)
-        {
-            closed_nodes_map[x][y]=0;
-            open_nodes_map[x][y]=0;
-        }
-    }
-
-    // create the start node and push into list of open nodes
-    n0=new node(xStart, yStart, 0, 0);
-    n0->updatePriority(xFinish, yFinish);
-    pq[pqi].push(*n0);
-    open_nodes_map[x][y]=n0->getPriority(); // mark it on the open nodes map
-
-    // A* search
-    while(!pq[pqi].empty())
-    {
-        // get the current node w/ the highest priority
-        // from the list of open nodes
-        n0=new node( pq[pqi].top().getxPos(), pq[pqi].top().getyPos(),
-                     pq[pqi].top().getLevel(), pq[pqi].top().getPriority());
-
-        x=n0->getxPos(); y=n0->getyPos();
-
-        pq[pqi].pop(); // remove the node from the open list
-        open_nodes_map[x][y]=0;
-        // mark it on the closed nodes map
-        closed_nodes_map[x][y]=1;
-
-        // quit searching when the goal state is reached
-        //if((*n0).estimate(xFinish, yFinish) == 0)
-        if(x==xFinish && y==yFinish)
-        {
-            // generate the path from finish to start
-            // by following the directions
-            string path="";
-            while(!(x==xStart && y==yStart))
-            {
-                j=dir_map[x][y];
-                c='0'+(j+dir/2)%dir;
-                path=c+path;
-                x+=dx[j];
-                y+=dy[j];
-            }
-
-            // garbage collection
-            delete n0;
-            // empty the leftover nodes
-            while(!pq[pqi].empty()) pq[pqi].pop();
-            return path;
-        }
-
-        // generate moves (child nodes) in all possible directions
-        for(i=0;i<dir;i++)
-        {
-            xdx=x+dx[i]; ydy=y+dy[i];
-
-            if(!(xdx<0 || xdx>n-1 || ydy<0 || ydy>m-1 || map[xdx][ydy]==1
-                || closed_nodes_map[xdx][ydy]==1))
-            {
-                // generate a child node
-                m0=new node( xdx, ydy, n0->getLevel(),
-                             n0->getPriority());
-                m0->nextLevel(i);
-                m0->updatePriority(xFinish, yFinish);
-
-                // if it is not in the open list then add into that
-                if(open_nodes_map[xdx][ydy]==0)
-                {
-                    open_nodes_map[xdx][ydy]=m0->getPriority();
-                    pq[pqi].push(*m0);
-                    // mark its parent node direction
-                    dir_map[xdx][ydy]=(i+dir/2)%dir;
-                }
-                else if(open_nodes_map[xdx][ydy]>m0->getPriority())
-                {
-                    // update the priority info
-                    open_nodes_map[xdx][ydy]=m0->getPriority();
-                    // update the parent direction info
-                    dir_map[xdx][ydy]=(i+dir/2)%dir;
-
-                    // replace the node
-                    // by emptying one pq to the other one
-                    // except the node to be replaced will be ignored
-                    // and the new node will be pushed in instead
-                    while(!(pq[pqi].top().getxPos()==xdx &&
-                           pq[pqi].top().getyPos()==ydy))
-                    {
-                        pq[1-pqi].push(pq[pqi].top());
-                        pq[pqi].pop();
-                    }
-                    pq[pqi].pop(); // remove the wanted node
-
-                    // empty the larger size pq to the smaller one
-                    if(pq[pqi].size()>pq[1-pqi].size()) pqi=1-pqi;
-                    while(!pq[pqi].empty())
-                    {
-                        pq[1-pqi].push(pq[pqi].top());
-                        pq[pqi].pop();
-                    }
-                    pqi=1-pqi;
-                    pq[pqi].push(*m0); // add the better node instead
-                }
-                else delete m0; // garbage collection
-            }
-        }
-        delete n0; // garbage collection
-    }
-    return ""; // no route found
+	int j = 0;
+	int min = INFTY;
+	for(int x = 0; x < indice[s]; x++)
+		if(set[s][x].fscore < min)
+		{
+			min = set[s][x].fscore;
+			j = x;
+		}
+	return j;
 }
 
-
-double rotation(string s)
+void removeSet(int s, int j)
 {
-    int pos = 0;
-    double sum = 0.0;
-    while (pos < s.length())
-    {
-        sum += dirToDegree[s[pos] - '0'];
-        pos += 1;
-    }
-    cout << "   ROTATION : " << sum/s.length() << "\n";
-    return sum/s.length();
+	for (int a = j; a < indice[s]-1; a++)
+	{
+		set[s][a].x = set[s][a+1].x;
+		set[s][a].y = set[s][a+1].y;
+		set[s][a].fscore = set[s][a+1].fscore;
+		set[s][a].gscore = set[s][a+1].gscore;
+	}
+	indice[s]--;
 }
 
-double translation(string s)
+int inSet(int s, int x, int y)
 {
-    int pos = 0;
-    int x = 0;
-    int y = 0;
-    while (pos < s.length())
-    {
-        switch(s[pos] - '0')
-        {
-            case 0: {x += 1; break;}
-            case 1: {x += 1; y -= 1; break;}
-            case 2: {y -= 1; break;}
-            case 3: {x -= 1; y -= 1; break;}
-            case 4: {x -= 1; break;}
-            case 5: {x -= 1; y += 1; break;}
-            case 6: {y += 1; break;}
-            case 7: {x += 1; y += 1; break;}
-        }
-        pos += 1;
-    }
-    cout << "   TRANSLATION : " << (sqrt(x*x + y*y)) << " -- x" << x << " -y" << y << "\n"; // DEBUG
-    return (sqrt(x*x + y*y));
+	for (int i = 0; i < indice[s]; i++)
+		if(set[s][i].x == x && set[s][i].y == y)
+			return i;
+    return -1;
 }
 
-//void updatePath(int xA, int yA, int xB, int yB)
-void updatePath(string s)
+string reconstruct_path(int startx, int starty, int currx, int curry)
 {
 //    string s = pathFind(xA, yA, xB, yB);
     if (s.length() > 0)
@@ -390,96 +239,228 @@ void updatePath(string s)
             dirOffset = "";
         }
     }
-    
+
 }
 
-
-
-
-
-int main()
+void displayMap()// display the map with the route
 {
-    srand(time(NULL));
-
-    // create empty map
-    for(int y=0;y<m;y++)
-    {
-        for(int x=0;x<n;x++) map[x][y]=0;
-    }
-
-    // fillout the map matrix with a '+' pattern
-    for(int x=n/8;x<n*7/8;x++)
-    {
-        map[x][m/2]=1;
-    }
-    for(int y=m/8;y<m*7/8;y++)
-    {
-        map[n/2][y]=1;
-    }
-
-    // randomly select start and finish locations
-    int xA, yA, xB, yB;
-    switch(rand()%8)
-    {
-        case 0: xA=0;yA=0;xB=n-1;yB=m-1; break;
-        case 1: xA=0;yA=m-1;xB=n-1;yB=0; break;
-        case 2: xA=n/2-1;yA=m/2-1;xB=n/2+1;yB=m/2+1; break;
-        case 3: xA=n/2-1;yA=m/2+1;xB=n/2+1;yB=m/2-1; break;
-        case 4: xA=n/2-1;yA=0;xB=n/2+1;yB=m-1; break;
-        case 5: xA=n/2+1;yA=m-1;xB=n/2-1;yB=0; break;
-        case 6: xA=0;yA=m/2-1;xB=n-1;yB=m/2+1; break;
-        case 7: xA=n-1;yA=m/2+1;xB=0;yB=m/2-1; break;
-    }
-
-    cout<<"Map Size (X,Y): "<<n<<","<<m<<endl;
-    cout<<"Start: "<<xA<<","<<yA<<endl;
-    cout<<"Finish: "<<xB<<","<<yB<<endl;
-    // get the route
-    clock_t start = clock();
-    string route=pathFind(xA, yA, xB, yB);
-
-    // follow the route on the map and display it
-    if(route.length()>0)
-    {
-        int j; char c;
-        int x=xA;
-        int y=yA;
-        map[x][y]=2;
-        for(int i=0;i<route.length();i++)
-        {
-            c =route.at(i);
-            j=atoi(&c);
-            x=x+dx[j];
-            y=y+dy[j];
-            map[x][y]=3;
-        }
-        map[x][y]=4;
-
-        // display the map with the route
-        for(int y=0;y<m;y++)
-        {
-            for(int x=0;x<n;x++)
-                if(map[x][y]==0)
-                    cout<<".";
-                else if(map[x][y]==1)
-                    cout<<"O"; //obstacle
-                else if(map[x][y]==2)
-                    cout<<"S"; //start
-                else if(map[x][y]==3)
-                    cout<<"R"; //route
-                else if(map[x][y]==4)
-                    cout<<"F"; //finish
-            cout<<endl;
-        }
-    }
-    clock_t end = clock();
-    double time_elapsed = double(end - start);
-    cout<<"Time to calculate the route (ms): "<<time_elapsed<<endl;
-    cout<<"Route:"<<endl;
-    cout<<route<<endl<<endl;
-
-    updatePath(route);
-
-    getchar(); // wait for a (Enter) keypress
-    return(0);
+	//~ for(int x = 0; x < indice[OPEN]; x++)
+		//~ map[set[OPEN][x].x][set[OPEN][x].y] = 5;
+	for(int y=0;y<m;y++)
+	{
+		for(int x=0;x<n;x++)
+			if(map[x][y]==0)
+				printf(".");
+			else if(map[x][y]==1)
+				printf("O"); //obstacle
+			else if(map[x][y]==2)
+				printf("S"); //start
+			else if(map[x][y]==3)
+				printf("R"); //route
+			else if(map[x][y]==4)
+				printf("F"); //finish
+			else if(map[x][y] == 5)
+				printf("o");
+			else if(map[x][y] == 6)
+				printf("v");
+			else if(map[x][y] == 7)
+				printf("c");
+		printf("\n");
+	}
 }
+
+//try to jump from x to y, to go from start to end 
+//return x + sizeof(map) * y
+int jump(int x, int y, int direction)
+{
+	int nx = x + dx[direction];
+	int ny = y + dy[direction];
+	//~ if( x == 11)
+		//~ printf("%d %d\n", nx, ny);
+	if(nx < 0 || nx > n -1 || ny < 0 || ny > m -1 || map[nx][ny] == 1)
+		return -1;
+	
+	if( nx == goalX && ny == goalY)
+		return nx + m * ny;
+		
+	//look for forced neighboors
+	int x2 = nx +  dx[direction];
+	int y2 = ny +  dy[direction];
+	//straight move
+	if(direction % 2 == 0)
+	{
+		//find cells above / below : if blocked, it is forced
+		if(nx + dy[direction] > 0 && nx + dy[direction] < n && ny + dx[direction] > -1 && ny + dx[direction] < m && x2 + dy[direction] > 0 && x2 + dy[direction] < n && y2 + dx[direction] > -1 && y2 + dx[direction] < m)
+			if(map[nx + dy[direction]][ny + dx[direction]] == 1 && map[x2 + dy[direction]][y2 + dx[direction]] != 1)
+				return nx  + m * ny;
+				
+				
+		if(nx - dy[direction] > 0 && nx - dy[direction] < n && ny - dx[direction] > -1 && ny - dx[direction] < m && x2 - dy[direction] > 0 && x2 - dy[direction] < n && y2 - dx[direction] > -1 && y2 - dx[direction] < m)
+			if(map[nx - dy[direction]][ny - dx[direction]] == 1 && map[x2 - dy[direction]][y2 - dx[direction]] != 1)
+				return nx  + m * ny;
+	}
+	else
+	{
+		//diagonal : look in corners
+		if(y2  > -1 && y2 < m)
+			if(map[x][ny] == 1 && map[x][y2] != 1)
+				return nx  + m * ny;
+		
+		if(x2  > -1 && x2 < n)
+			if(map[nx][y] == 1 && map[x2][y] != 1)
+				return nx  + m * ny;	
+		//perform horizontal and vertical check
+		if(jump(nx,ny,(direction+1)%dir) != -1)
+			return nx + ny * m;
+		if(jump(nx,ny,(direction-1)%dir) != -1)
+			return nx + ny * m;
+		
+	}
+	return jump(nx, ny, direction);
+}
+
+string AStar(int startx, int starty, int endx, int endy)
+{
+	//setup
+	goalX = endx;
+	goalY = endy;
+    indice[OPEN] = 1;
+    indice[CLOSE] = 0;
+    set[OPEN][0].x = startx;
+    set[OPEN][0].y = starty;
+    set[OPEN][0].fscore =  distance(startx, starty, endx, endy);
+    set[OPEN][0].gscore = 0;
+    
+    int j, currx, curry, nx, ny, pos;
+    float currg, newg, newf;
+    while(indice[OPEN] != 0)
+    {
+		//find current node
+		j = getCurrent(OPEN);
+		currx = set[OPEN][j].x;
+		curry = set[OPEN][j].y;
+		currg = set[OPEN][j].gscore;
+
+		
+		//put node in close list
+		set[CLOSE][indice[CLOSE]].x = currx;
+		set[CLOSE][indice[CLOSE]].y = curry;
+		set[CLOSE][indice[CLOSE]].fscore = set[OPEN][j].fscore;
+		indice[CLOSE]++;
+		removeSet(OPEN, j);
+		//look for neighboor
+		for(int i=0; i<8; i++)
+		{
+			//jump
+			j = jump(currx, curry, i);
+			nx = j % m;
+			ny = j / m;
+			if(nx == -1)
+				continue;
+			if(nx == endx && ny == endy)
+			{
+				cameFrom[nx][ny][X] = currx;
+				cameFrom[nx][ny][Y] = curry;
+				return reconstruct_path(startx, starty, nx, ny);
+			}
+									
+			newg = currg +  distance(nx, ny, currx, curry);
+			newf = newg  +  distance(nx, ny, endx, endy);
+			
+			pos =  inSet(CLOSE, nx, ny);
+			if(pos != -1 && set[CLOSE][pos].fscore < newf)
+					continue;
+			
+			pos = inSet(OPEN, nx, ny);
+			if( pos!= -1 &&  set[OPEN][pos].fscore < newf)
+					continue;
+			
+			if( pos == -1)
+			{
+				set[OPEN][indice[OPEN]].x = nx;
+				set[OPEN][indice[OPEN]].y = ny;
+				set[OPEN][indice[OPEN]].gscore = newg;
+				set[OPEN][indice[OPEN]].fscore = newf;
+				indice[OPEN]++;	
+			}
+			else
+			{
+				set[OPEN][pos].gscore = newg;
+				set[OPEN][pos].fscore = newf;
+			}
+			cameFrom[nx][ny][X] = currx;
+			cameFrom[nx][ny][Y] = curry;
+            
+		}
+	}
+	return "";
+}
+
+void generateRandomGrid(int randseed, int N)
+{
+	srand(randseed);
+	
+	//generation de N obstacles, de taille aleatoire, sauf dans les 5 premieres / dernieres lignes du plateau
+	
+	for(int i = 0; i<N; i++)
+	{
+		int posx = rand() % (n - 10);
+		int posy = rand() % m + 5;
+		int sizex = rand() % 40;
+		int sizey = rand() % 20;
+		
+		for(int x = posx; x < posx + sizex; x++)
+			for(int y = posy; y < posy + sizey; y++)
+				if(x < n && y < m - 5)
+					map[x][y] = 1;
+		
+	}
+}
+
+
+
+int main(int argc, char **argv)
+{
+	
+	//setup map
+	generateRandomGrid(time(NULL), 120);
+
+	int xA, yA, xB, yB;
+	xA = n / 2;
+	yA = 0;
+	xB = n/2 - 20 + rand() % 40;
+	yB = m - 1;
+
+		
+	clock_t start = clock();
+	string route = AStar(xA, yA, xB, yB);
+	clock_t end = clock();
+	float time_elapsed = (float)(end - start)* 1000.0 / CLOCKS_PER_SEC;
+	//~ printf("Time to calculate : %f\n", time_elapsed);
+	printf("%f\n", time_elapsed);
+	cout << route << endl;
+	
+	// follow the route on the map and display it
+	int length = route.length();
+	if(length>0)
+	{
+		int j; char c;
+		int x=xA;
+		int y=yA;
+		map[x][y]=2;
+		for(int i=0;i<length;i++)
+		{
+			c =route[i];
+			j=atoi(&c);
+			x=x+dx[j];
+			y=y+dy[j];
+			map[x][y]=3;
+		}
+		map[x][y]=4;
+
+	}
+	displayMap();
+	
+	return 0;
+}
+
