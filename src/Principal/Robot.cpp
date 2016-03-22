@@ -11,6 +11,10 @@ Robot robot;
 
 void Robot::avancerRobot(int dist) {
     double angle = robot.o * 2 * math.pi / 360;
+    x += math.cos(angle)*dist;
+    y += math.sin(angle)*dist;
+
+    // CHECK SORTIE DE GRILLE => translation (ne pas oublier de translater le robot avec)
 }
 
 int main(int argc, char *argv[])

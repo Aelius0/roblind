@@ -59,8 +59,6 @@ class Robot
 
     void avancerRobot(int dist);
     void main();
-    void marquer_bloque(int x, int y);
-    void marquer_libre(int x, int y);
     bool calculer_chemin(double direction);
 
 }; //end class Robot
