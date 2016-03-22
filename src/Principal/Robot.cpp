@@ -9,6 +9,10 @@ pthread_t motThread, capteurThread;
 Robot robot;
 
 
+void Robot::avancerRobot(int dist) {
+    double angle = robot.o * 2 * math.pi / 360;
+}
+
 int main(int argc, char *argv[])
 {
     cout << "Main robot code" << endl;

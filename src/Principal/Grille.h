@@ -1,17 +1,6 @@
-
-
-class GPS
-{
- public:
-void lire_destination();
-double get_direction();
-
- private:
-    std::string destination;
-    std::vector<double> position;
-    void* chemin;
-
-};
+#include <iostream>
+#include <cmath>
+#include <iomanip>
 
 class Grille{
 

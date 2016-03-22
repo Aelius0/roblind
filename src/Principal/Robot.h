@@ -7,6 +7,7 @@
 #include <iostream>
 #include <pthread.h>
 #include <queue>
+#include <cmath>
 #include <wiringPi.h>
 using namespace std;
 //#include "/home/mecatro/Raspberry/usr/include/wiringPi.h"
@@ -54,12 +55,12 @@ class Robot
     // 0: vide  1: obstacle  2: trottoir  3: mur
     Grille* grille_espace;
 	
-	
-void main();
-void marquer_bloque(int x, int y);
-void marquer_libre(int x, int y);
-bool calculer_chemin(double direction);
 
+    void avancerRobot(int dist);
+    void main();
+    void marquer_bloque(int x, int y);
+    void marquer_libre(int x, int y);
+    bool calculer_chemin(double direction);
 
 }; //end class Robot
 
