@@ -218,120 +218,16 @@ public:
 
 };
 
-class Robot{
-
-private:
-	double positionX_,positionY_;
-	int caseX_, caseY_;
-	double positionXIni_,positionYIni_;
-	int caseXIni_, caseYIni_;
-	int bordureX_,bordureY_;
-	double orientation_;
-	double vitesse_;
-	Grille* grille_;
-	double hauteurLaser_;
-public:
-	Robot(int tailleX, int tailleY, double resolutionX, double resolutionY, int bordureX, int bordureY){
-
-		cout << "Creation du robot.\n";
-
-		/*CREATION ET INITIALISATION DE LA GRILLE ASSOCIEE*/
-		grille_ = new Grille(resolutionX,resolutionY,tailleX,tailleY);
-
-		/*PLACMENT DU ROBOT SUR LA GRILLE*/
-		orientation_=0; // Le robot est dirigé vers le haut de la grille
-		vitesse_=0;
-		bordureX_=bordureX;
-		bordureY_=bordureY;
-
-		caseXIni_ = floor(grille_->getTailleX()/2);
-		caseYIni_ = floor(grille_->getTailleY()/2);
-		caseX_=caseXIni_;
-		caseY_=caseYIni_;
-		positionXIni_=resolutionX*caseXIni_+resolutionX/2;
-		positionYIni_=resolutionY*caseYIni_+resolutionY/2;	// Le robot commence au milieu de la grille
-		positionX_=positionXIni_;
-		positionY_=positionYIni_;
-
-		hauteurLaser_ = 10;
-
-		cout << "Fin de la creation du robot.\n";
-
-	}
-
-	~Robot(){
-		delete grille_;
-		cout << "Le robot est detruit.\n";
-	}
-
-	/*GETTERS*/
-	double getPositionX(){return positionX_;}
-	double getPositionY(){return positionY_;}
-	double getPositionXIni(){return positionXIni_;}
-	double getPositionYIni(){return positionYIni_;}
-	double getBordureX(){return bordureX_;}
-	double getBordureY(){return bordureY_;}
-	double getCaseXIni(){return caseXIni_;}
-	double getCaseYIni(){return caseYIni_;}
-	double getCaseX(){return caseX_;}
-	double getCaseY(){return caseY_;}
-	double getVitesse(){return vitesse_;}
-	double getOrientation(){return orientation_;}
-	Grille* getGrille(){return grille_;}
-
-	/*SETTERS*/
-	void setPositionX(double newPositionX){
-		positionX_=newPositionX;
-        caseX_= static_cast<int>(positionX_/(grille_->getResolutionX()));
-	}
-	void setPositionY(double newPositionY){
-		positionY_=newPositionY;
-        caseY_= static_cast<int>(positionX_/(grille_->getResolutionY()));
-	}
-	void setVitesse(double newVitesse){vitesse_=newVitesse;}
-	void setOrientation(double newOrientation){orientation_=newOrientation;}
-
-	/*TRAITEMENT*/
-	void actualiserLaser(double inclinaison, double distance){
-
-		/*CALCUL DE LA DISTANCE THEORIE ATTENDUE*/
-		double distanceTheorique = hauteurLaser_ / cos(inclinaison);
-
-		/*COMPARAISON AVEC LA DISTANCE MESUREE*/
-		double deltaTheorique = distance - distanceTheorique;
-
-		/*DETERMINATION DE L'EMPLACEMENT SUR LA GRILLE*/
-		double projectionLaterale = distance * sin(inclinaison);
-
-			/*DETERMINISATION DE LA POSITION*/
-			double positionObstacleXrel = - projectionLaterale * sin(orientation_);
-			double positionObstacleYrel = - projectionLaterale * cos(orientation_);
-			double positionObstacleXabs = positionX_+positionObstacleXrel;
-			double positionObstacleYabs = positionY_+positionObstacleYrel;
-
-			/*DETERMINATION DE LA CASE CORRESPONDANTE*/
-			int caseObstacleX = floor(positionObstacleXabs/(grille_->getResolutionX()));
-			int caseObstacleY = floor(positionObstacleYabs/(grille_->getResolutionY()));
-
-		/*ECRITURE DE L'OBSTACLE SUR LA GRILLE*/
-		if(deltaTheorique>0){grille_->set(caseObstacleX,caseObstacleY,OBSTACLE);}
-		else{grille_->set(caseObstacleX,caseObstacleY,CHAUSSEE);}
-
-		}
-
-	};
-
-
 
 int main(){
 
 	/*CREATION DE LA GRILLE INITIALISEE*/
-	/*
+	
 	Grille* essai = new Grille(10,10,10,10);
 	essai->afficher();
-	 */
+	 
 	/*REMPLISSAGE DE LA GRILLE*/
-	/*
+	
 	cout << "Remplissage de la grille.\n";
 	for(int i=0;i<10;i+=2){
 		for(int j=0;j<10;j+=2){
@@ -340,28 +236,15 @@ int main(){
 		}
 	}
 	essai->afficher();
-	*/
+	
 	/*TRANSLATION DE LA GRILLE*/
-	/*
+	
 	cout << "Translation de la grille.\n";
 	essai->translaterRepereUsuel(1,1);
 	essai->afficher();
 	essai->translaterRepereGrille(1,-1);
 	essai->afficher();
-	*/
-
-	/*CREATION DU ROBOT ET DE LA GRILLE*/
-	Robot* robot = new Robot(10,10,5,5,1,1);
-	robot->getGrille()->afficher();
-	cout << "CaseX : " << robot->getCaseX() << "\n";
-	cout << "CaseY : " << robot->getCaseY() << "\n";
-	cout << "PositionX : " << robot->getPositionX() << "\n";
-	cout << "PositionY : " << robot->getPositionY() << "\n";
-	robot->setPositionX(7.6);
-	cout << "CaseX : " << robot->getCaseX() << "\n";
-	cout << "CaseY : " << robot->getCaseY() << "\n";
-	cout << "PositionX : " << robot->getPositionX() << "\n";
-	cout << "PositionY : " << robot->getPositionY() << "\n";
+	
 
 
 }
