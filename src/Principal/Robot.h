@@ -2,17 +2,14 @@
 #ifndef __Robot_25af486e_96d7_45d7_b476_038f6f2f8d75_H_INCLUDED
 #define __Robot_25af486e_96d7_45d7_b476_038f6f2f8d75_H_INCLUDED
 
-/*
- * File Type: Class header
- * Class: Robot
- */
 
 //standard include
 #include <iostream>
 #include <pthread.h>
+#include <queue>
+#include <wiringPi.h>
 using namespace std;
 //#include "/home/mecatro/Raspberry/usr/include/wiringPi.h"
-#include "../Moteurs/Moteur.h"
 #include "../Canne/Joystick.h"
 #include "../Canne/Bouton_arret.h"
 #include "../Canne/Capteur_effort.h"
@@ -29,6 +26,7 @@ using namespace std;
 
 #define DIMENSION 500
 #define RESOLUTION 5.0
+#define CM_TO_PAS_CODEUR 1
 
 
 class Robot
@@ -42,7 +40,6 @@ class Robot
     Canne::Buzzer* buzzer;
     Canne::Vibreur* vibreur;
     Kinect* kinect;
-    Moteur* moteur;
     GPS* gps;
     Batterie* batterie;
     Laser* laser_gauche;
@@ -66,5 +63,8 @@ bool calculer_chemin(double direction);
 }; //end class Robot
 
 extern Robot robot;
-extern vector< vector<int> > path;
+extern queue< vector<int> > path;
+extern int speed = 2;
+extern int rotationSpeed = 2;
+
 #endif // __Robot_25af486e_96d7_45d7_b476_038f6f2f8d75_H_INCLUDED

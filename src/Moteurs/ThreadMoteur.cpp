@@ -1,14 +1,6 @@
 
 //package header file
 #include "ThreadMoteur.h"
-#include "../Principal/Robot.h"
-#include "kangaroo.h"
-
-/*
-int* position = new int;
-int lastCmd = -1;
-int lastCmdType = -1;
-*/
 
 void *ThreadMoteur (void *)
 {
@@ -18,23 +10,32 @@ void *ThreadMoteur (void *)
    Ckangaroo baseRoulante("/dev/ttyAMA0");
    while(true)
    {
-    err = baseRoulante.getPosition(mode.turn, position);
-    if (!err) {
-        if (path.size() == 0)
-            ;          // TODO : vibrer
-        else {
-            vector<int> cmd = path.pop();
-            switch (cmd[0]) {
-            case 0: // TRANSLATION
-                baseRoulante.allerEn(cmd[1],speed,cm);
-                break;
-            case 1: // ROTATION
-                baseRoulante.tourner(cmd[1],rotationSpeed);
-                break;
-            }
-        }
-    }
-    delay(10);
+       if (active) {
+           err = baseRoulante.getPosition(m, position);
+           if (!err && *position >= lastCmd) {
+               if (path.size() == 0)
+                   active = false;          // TODO : vibrer
+               else {
+                   vector<int> cmd = path.pop();
+                   lastCmdType = cmd[0];
+                   lastCmd = cmd[1];
+                   switch (cmd[0]) {
+                   case 0: // TRANSLATION
+                       m = drive;
+                       baseRoulante.allerEn(cmd[1],speed,cm);
+                       break;
+                   case 1: // ROTATION
+                       m = turn;
+                       baseRoulante.tourner(cmd[1],rotationSpeed);
+                       break;
+                   }
+               }
+           }
+           else {
+               ; // RESET PROTOCOL ??
+           }
+       }
+       delay(10);
    }
 
    exit (0);

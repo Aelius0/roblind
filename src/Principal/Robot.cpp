@@ -4,21 +4,18 @@
 #include "../Moteurs/ThreadMoteur.h"
 #include "../Capteurs/ThreadCapteurs.h"
 
-
 using namespace std;
 pthread_t motThread, capteurThread;
 Robot robot;
 
-/*
+
 int main(int argc, char *argv[])
 {
     cout << "Main robot code" << endl;
+    wiringPiSetup();
     pthread_create(&motThread, NULL, ThreadMoteur, NULL);
     pthread_create(&capteurThread, NULL, ThreadCapteur, NULL);
 
-    wiringPiSetup();
-    
-    
     pinMode(9, OUTPUT);
     pinMode(2, INPUT);
     pullUpDnControl(2, PUD_UP);
@@ -28,21 +25,18 @@ int main(int argc, char *argv[])
     while(true)
     {
 //        digitalWrite(9, !digitalRead(2));
-        cout << robot.x<< endl;
+        cout << robot.x << endl;
         delay(1000);
     }
 
     return 0;
 }
-*/
+
 
 
 bool Robot::calculer_chemin(double direction)
 {
-//begin of modifiable zone(Cxx.Code)......C/b023ce1d-fe98-4d92-9cb1-a798f3f0c794
-// TODO complete code
-//end of modifiable zone(Cxx.Code)........E/b023ce1d-fe98-4d92-9cb1-a798f3f0c794
 
-} // end calculer_chemin
+}
 
 
