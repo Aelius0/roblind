@@ -8,6 +8,43 @@ using namespace std;
 pthread_t motThread, capteurThread;
 Robot robot;
 
+/*DECLARATION DES STRUCTURES D'ERREURS POUR LES EXCEPTIONS*/
+struct coordonneesHorsGrille{};
+struct coordonneesHorsBordure{};
+
+/*DEFINITION DES METHODES*/
+void Robot::avancerRobot(double distance){
+    
+    try{
+
+	/*CALCUL DE LA NOUVELLE POSITION*/
+	double deltaX = - math.abs(distance) * math.sin(o);
+	X=X+deltaX;
+
+	double deltaY = + math.abs(distance) * math.cos(o);
+	Y=Y+deltaY;
+
+	/*ACTUALISATION DE LA CASE*/
+	caseX=floor(X/(grille->getResolution()));
+	caseY=floor(Y/(grille->getResolution()));
+
+	/*VERIFICATION DE LA NOUVELLE POSITION*/
+	double tailleGrille = (grille->getTaille())*(grille->getResolution());
+	if(X<0 || X>tailleGrille){throw coordonneesHorsGrille();}
+	else if(Y<0 || Y>tailleGrille){throw coordonneesHorsGrille();}
+
+	if(X<bordureSortie || X>tailleGrille-bordureSortie){throw coordonneesHorsBordure();}
+	else if(Y<bordureSortie || Y>tailleGrille-bordureSortie){throw coordonneesHorsBordure();}
+
+}
+catch(coordonneesHorsGrille& e){
+	cout << "Il y a un probleme.\n";
+}
+catch(coordonneesHorsBordure& e){
+	cout << "Il va falloir translater la grille\n";
+}
+    
+}
 
 void Robot::avancerRobot(int dist) {
     double angle = robot.o * 2 * math.pi / 360;
