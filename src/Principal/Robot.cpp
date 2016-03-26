@@ -22,16 +22,17 @@ Robot::Robot(double resolution, int taille){
 	grille = new Grille(resolution,taille); // sert à repérer les obstacles
 
 	/*INITIALISATION DU PLACEMENT DU ROBOT*/
-	x=taille*resolution/2;
-	caseX=floor(x/resolution);
+	// On place le robot au milieu de la grille.
+	X=taille*resolution/2;
+	caseX=floor(X/resolution);
 
-	y=taille*resolution/2;
-	caseY=floor(y/resolution);
+	Y=taille*resolution/2;
+	caseY=floor(Y/resolution);
 
 	positionInitialeXY = taille*resolution/2;
 	caseInitialeXY = floor(taille/2);
 
-	o=0;
+	orientation=0;
 	vitesse=0;
 
 	/*DEFINITON DES BORDURES D'ENTREE ET DE SORTIE*/
@@ -44,7 +45,7 @@ Robot::Robot(double resolution, int taille){
 
 Robot::~Robot(){
 	cout << "---------------------------------\n";
-	cout << "Debut de la destruction du robot.\n";
+	cout << "DESTRUCTION DU ROBOT\n";
 	delete grille;
 	cout << "Fin de la destruction du robot.\n";
 }
@@ -55,23 +56,23 @@ void Robot::avancerRobot(double distance){
     try{
 
 	/*CALCUL DE LA NOUVELLE POSITION*/
-	double deltaX = - math.abs(distance) * math.sin(o);
-	x+=deltaX;
+	double deltaX = - math.abs(distance) * math.sin(orientation);
+	X+=deltaX;
 
-	double deltaY = + math.abs(distance) * math.cos(o);
-	y+=deltaY;
+	double deltaY = + math.abs(distance) * math.cos(orientation);
+	X+=deltaY;
 
 	/*ACTUALISATION DE LA CASE*/
-	caseX=math.floor(x/(grille->getResolution()));
-	caseY=math.floor(x/(grille->getResolution()));
+	caseX=math.floor(X/(grille->getResolution()));
+	caseY=math.floor(Y/(grille->getResolution()));
 
 	/*VERIFICATION DE LA NOUVELLE POSITION*/
 	double tailleGrille = (grille->getTaille())*(grille->getResolution());
-	if(x<0 || x>tailleGrille){throw coordonneesHorsGrille();}
-	else if(y<0 || y>tailleGrille){throw coordonneesHorsGrille();}
+	if(X<0 || X>tailleGrille){throw coordonneesHorsGrille();}
+	else if(Y<0 || Y>tailleGrille){throw coordonneesHorsGrille();}
 
-	if(x<bordureSortie || x>tailleGrille-bordureSortie){throw coordonneesHorsBordure();}
-	else if(y<bordureSortie || y>tailleGrille-bordureSortie){throw coordonneesHorsBordure();}
+	if(X<bordureSortie || X>tailleGrille-bordureSortie){throw coordonneesHorsBordure();}
+	else if(Y<bordureSortie || Y>tailleGrille-bordureSortie){throw coordonneesHorsBordure();}
 
 	}
 	
@@ -99,8 +100,8 @@ void Robot::actualiserLaser(double distMesuree, double inclinaison){
 	// Distance négative si l'obstacle est à gauche
 
 	/*REPERAGE DE LA POSITION ET DE LA CASE*/
-	double Xobstacle = x + distObstacle * math.cos(o) ;
-	double Yobstacle = y + distObstacle * math.sin(o) ;
+	double Xobstacle = X + distObstacle * math.cos(orientation) ;
+	double Yobstacle = Y + distObstacle * math.sin(orientation) ;
 
 	int caseObstacleX = floor(Xobstacle/grille->getResolution());
 	int caseObstacleY = floor(Yobstacle/grille->getResolution());
@@ -125,8 +126,8 @@ void Robot::translaterGrille(){
 	cout << "TRANSLATION DE LA GRILLE\n";
 
 	/*CALCUL DES COORDONNEES D'ENTREE DESIREES*/
-	double deltaX = x - positionInitialeXY;
-	double deltaY = y - positionInitialeXY;
+	double deltaX = X - positionInitialeXY;
+	double deltaY = Y - positionInitialeXY;
 
 	double numerateurRapport = (grille->getTailleGrille()/2)-bordureEntree;
 	double denominateurRapport = max(math.abs(deltaX),math.abs(deltaY));
@@ -147,9 +148,9 @@ void Robot::translaterGrille(){
 	grille->translaterRepereGrille(translationCaseX,translationCaseY);
 
 	/*ACTUALISATION DES POSITIONS DU ROBOT*/
-	x = Xentree;
+	X = Xentree;
 	caseX = caseXentree;
-	y = Yentree;
+	Y = Yentree;
 	caseY = caseYentree;
 
 	cout << "-------------------------------------\n";
@@ -173,7 +174,7 @@ int main(int argc, char *argv[])
     while(true)
     {
 //        digitalWrite(9, !digitalRead(2));
-        cout << robot.x << endl;
+        cout << robot.X << endl;
         delay(1000);
     }
 
