@@ -63,7 +63,7 @@ class Robot
     int caseX; // abscisse de la case correspondante dans la grille AJOUTE
     int caseY; // ordonnee de la case correspondante dans la grille AJOUTE
     // 0: vide  1: obstacle  2: trottoir  3: mur
-    Grille* grille_espace; // grille des obstacles
+    Grille* grille; // grille des obstacles
     
     /*PARAMETRES LIES A LA TRANSLATION DE LA GRILLE*/
     double bordureSortie; // bordure a partir de laquelle translater la grille AJOUTE
