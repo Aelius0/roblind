@@ -25,8 +25,8 @@ void Robot::avancerRobot(double distance){
 	y+=deltaY;
 
 	/*ACTUALISATION DE LA CASE*/
-	caseX=floor(x/(grille->getResolution()));
-	caseY=floor(x/(grille->getResolution()));
+	caseX=math.floor(x/(grille->getResolution()));
+	caseY=math.floor(x/(grille->getResolution()));
 
 	/*VERIFICATION DE LA NOUVELLE POSITION*/
 	double tailleGrille = (grille->getTaille())*(grille->getResolution());
@@ -36,13 +36,15 @@ void Robot::avancerRobot(double distance){
 	if(x<bordureSortie || x>tailleGrille-bordureSortie){throw coordonneesHorsBordure();}
 	else if(y<bordureSortie || y>tailleGrille-bordureSortie){throw coordonneesHorsBordure();}
 
-}
-catch(coordonneesHorsGrille& e){
-	cout << "On est sorti de la grille. C'est pas bien. \n";
-}
-catch(coordonneesHorsBordure& e){
-	cout << "Il va falloir translater la grille. APPELER LA BONNE METHODE.\n";
-}
+	}
+	
+	/*GESTION DES EXCEPTIONS*/
+	catch(coordonneesHorsGrille& e){
+		cout << "On est sorti de la grille. C'est pas bien. \n";
+	}
+	catch(coordonneesHorsBordure& e){
+		cout << "Il va falloir translater la grille. APPELER LA BONNE METHODE.\n";
+	}
     
 }
 
