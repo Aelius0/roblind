@@ -80,7 +80,6 @@ class Robot
 
     /*METHODES DE DEPLACEMENT*/
     void avancerRobot(double); // avec une distance absolue AJOUTE
-    void avancerRobot(int dist); // avec une distance en nombre de cases
     void translaterGrille(); // translate la grille quand le robot atteint la bordure de sortie AJOUTE
     void main();
     bool calculer_chemin(double direction);
