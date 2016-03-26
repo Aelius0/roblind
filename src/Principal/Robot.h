@@ -59,7 +59,7 @@ class Robot
     /*ATTRIBUTS DE POSITION ET DE DEPLACEMENT*/
     double x; // abscisse
     double y; // ordonnee
-    double o; //orientation
+    double o; //orientation (EN RADIANS)
     int caseX; // abscisse de la case correspondante dans la grille AJOUTE
     int caseY; // ordonnee de la case correspondante dans la grille AJOUTE
     // 0: vide  1: obstacle  2: trottoir  3: mur
