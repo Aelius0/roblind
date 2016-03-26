@@ -83,6 +83,7 @@ class Robot
     void translaterGrille(); // translate la grille quand le robot atteint la bordure de sortie AJOUTE
     void main();
     bool calculer_chemin(double direction);
+    void actualiserLaser(double,double); //distance en metres, angle en radian
 
 }; //end class Robot
 
