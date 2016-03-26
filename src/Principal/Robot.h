@@ -84,6 +84,7 @@ class Robot
     void main();
     bool calculer_chemin(double direction);
     void actualiserLaser(double,double); //distance en metres, angle en radian
+    void translaterGrille();
 
 }; //end class Robot
 
