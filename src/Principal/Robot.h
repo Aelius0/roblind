@@ -74,6 +74,10 @@ class Robot
     /*TRAJECTOIRE CALCULEE*/
     int* chemin_evitement[];
 
+    /*CONSTRUCTEUR ET DESTRUCTEUR*/
+    Robot(double,int);
+    ~Robot();
+
     /*METHODES DE DEPLACEMENT*/
     void avancerRobot(double); // avec une distance absolue AJOUTE
     void avancerRobot(int dist); // avec une distance en nombre de cases
