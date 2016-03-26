@@ -12,6 +12,43 @@ Robot robot;
 struct coordonneesHorsGrille{};
 struct coordonneesHorsBordure{};
 
+/*CONSTRUCTEUR ET DESTRUCTEUR*/
+Robot::Robot(double resolution, int taille){
+
+	cout << "----------------------\n";
+	cout << "CONSTRUCTION DU ROBOT.\n";
+
+	/*CREATION DE LA GRILLE*/
+	grille = new Grille(resolution,taille); // sert à repérer les obstacles
+
+	/*INITIALISATION DU PLACEMENT DU ROBOT*/
+	x=taille*resolution/2;
+	caseX=floor(x/resolution);
+
+	y=taille*resolution/2;
+	caseY=floor(y/resolution);
+
+	positionInitialeXY = taille*resolution/2;
+	caseInitialeXY = floor(taille/2);
+
+	o=0;
+	vitesse=0;
+
+	/*DEFINITON DES BORDURES D'ENTREE ET DE SORTIE*/
+	bordureEntree = taille*resolution/5; // A REDEFINIR
+	bordureSortie = taille*resolution/10; // A REDEFINIR
+
+	cout << "Fin de la construction du robot.\n";
+
+}
+
+Robot::~Robot(){
+	cout << "---------------------------------\n";
+	cout << "Debut de la destruction du robot.\n";
+	delete grille;
+	cout << "Fin de la destruction du robot.\n";
+}
+
 /*DEFINITION DES METHODES*/
 void Robot::avancerRobot(double distance){
     
@@ -48,12 +85,75 @@ void Robot::avancerRobot(double distance){
     
 }
 
-void Robot::avancerRobot(int dist) {
-    double angle = robot.o * 2 * math.pi / 360;
-    x += math.cos(angle)*dist;
-    y += math.sin(angle)*dist;
+void Robot::actualiserLaser(double distMesuree, double inclinaison){
 
-    // CHECK SORTIE DE GRILLE => translation (ne pas oublier de translater le robot avec)
+	/*DISTANCE THEORIQUE ATTENDUE*/
+	double distTheorique = hauteurLaser / math.cos(inclinaison) ;
+	// L'inclinaison se mesure par rapport à la normale verticale
+	// En regadant vers l'avant du robot, l'inclinaison est positive
+	// quand on se penche vers la droite
+
+	/*REPERAGE DE LA DISTANCE LATERALE DE L'OBSTACLE*/
+	double distObstacle = distMesuree * math.sin(inclinaison) ;
+	// Distance positive si l'obstacle est à droite
+	// Distance négative si l'obstacle est à gauche
+
+	/*REPERAGE DE LA POSITION ET DE LA CASE*/
+	double Xobstacle = x + distObstacle * math.cos(o) ;
+	double Yobstacle = y + distObstacle * math.sin(o) ;
+
+	int caseObstacleX = floor(Xobstacle/grille->getResolution());
+	int caseObstacleY = floor(Yobstacle/grille->getResolution());
+
+	/*MODIFICATION DE LA GRILLE*/
+	double deltaDist = distMesuree - distTheorique ;
+	double margeTolerance = 0.1*distTheorique; // Marge de tolerance de 10% de la distance theorique
+	if(deltaDist>=margeTolerance){
+		grille->set(caseObstacleX,caseObstacleY,CHAUSSEE);
+	}
+	else if(abs(deltaDist)<margeTolerance){
+		grille->set(caseObstacleX,caseObstacleY,RAS);
+	}
+	else{
+		grille->set(caseObstacleX,caseObstacleY,OBSTACLE);
+	}
+}
+
+void Robot::translaterGrille(){
+
+	cout << "-------------------------------------\n";
+	cout << "TRANSLATION DE LA GRILLE\n";
+
+	/*CALCUL DES COORDONNEES D'ENTREE DESIREES*/
+	double deltaX = x - positionInitialeXY;
+	double deltaY = y - positionInitialeXY;
+
+	double numerateurRapport = (grille->getTailleGrille()/2)-bordureEntree;
+	double denominateurRapport = max(math.abs(deltaX),math.abs(deltaY));
+	double rapportHomothetie = numerateurRapport/denominateurRapport;
+	// La position de respawn est sur la bordure d'entree, inclue dans la bordure de sortie
+	// Sur la carre definie par la position de sortie, on determine la position symetrique par rapport au centre
+	// On se ramene sur la bordure d'entree avec le rapport d'homothetie entre les deux bordures
+	// Cette homothetie a pour centre le centre de la grille
+
+	double Xentree = positionInitialeXY - deltaX*rapportHomothetie;
+	int caseXentree = math.floor(Xentree/grille->getResolution());
+	double Yentree = positionInitialeXY - deltaY*rapportHomothetie;
+	int caseYentree = math.floor(Yentree/grille->getResolution());
+
+	/*DETERMINATION DES VECTEURS DE TRANSLATION ET TRANSLATION*/
+	int translationCaseX = caseXentree - caseX;
+	int translationCaseY = caseYentree - caseY;
+	grille->translaterRepereGrille(translationCaseX,translationCaseY);
+
+	/*ACTUALISATION DES POSITIONS DU ROBOT*/
+	x = Xentree;
+	caseX = caseXentree;
+	y = Yentree;
+	caseY = caseYentree;
+
+	cout << "-------------------------------------\n";
+
 }
 
 int main(int argc, char *argv[])
