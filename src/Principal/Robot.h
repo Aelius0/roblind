@@ -60,6 +60,7 @@ class Robot
     double X; // abscisse
     double Y; // ordonnee
     double orientation; //orientation (EN RADIANS)
+    double vitesse; // vitesse du roblind dans la direction courante (orientation)
     int caseX; // abscisse de la case correspondante dans la grille AJOUTE
     int caseY; // ordonnee de la case correspondante dans la grille AJOUTE
     // 0: vide  1: obstacle  2: trottoir  3: mur
