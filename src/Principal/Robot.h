@@ -82,10 +82,12 @@ class Robot
     /*METHODES DE DEPLACEMENT*/
     void avancerRobot(double); // avec une distance absolue AJOUTE
     void translaterGrille(); // translate la grille quand le robot atteint la bordure de sortie AJOUTE
-    void main();
     bool calculer_chemin(double direction);
     void actualiserLaser(double,double); //distance en metres, angle en radian
     void translaterGrille();
+    
+    /*METHODE PRINCIPALE*/
+    void main();
 
 }; //end class Robot
 
