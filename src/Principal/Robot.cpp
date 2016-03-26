@@ -19,29 +19,29 @@ void Robot::avancerRobot(double distance){
 
 	/*CALCUL DE LA NOUVELLE POSITION*/
 	double deltaX = - math.abs(distance) * math.sin(o);
-	X=X+deltaX;
+	x+=deltaX;
 
 	double deltaY = + math.abs(distance) * math.cos(o);
-	Y=Y+deltaY;
+	y+=deltaY;
 
 	/*ACTUALISATION DE LA CASE*/
-	caseX=floor(X/(grille->getResolution()));
-	caseY=floor(Y/(grille->getResolution()));
+	caseX=floor(x/(grille->getResolution()));
+	caseY=floor(x/(grille->getResolution()));
 
 	/*VERIFICATION DE LA NOUVELLE POSITION*/
 	double tailleGrille = (grille->getTaille())*(grille->getResolution());
-	if(X<0 || X>tailleGrille){throw coordonneesHorsGrille();}
-	else if(Y<0 || Y>tailleGrille){throw coordonneesHorsGrille();}
+	if(x<0 || x>tailleGrille){throw coordonneesHorsGrille();}
+	else if(y<0 || y>tailleGrille){throw coordonneesHorsGrille();}
 
-	if(X<bordureSortie || X>tailleGrille-bordureSortie){throw coordonneesHorsBordure();}
-	else if(Y<bordureSortie || Y>tailleGrille-bordureSortie){throw coordonneesHorsBordure();}
+	if(x<bordureSortie || x>tailleGrille-bordureSortie){throw coordonneesHorsBordure();}
+	else if(y<bordureSortie || y>tailleGrille-bordureSortie){throw coordonneesHorsBordure();}
 
 }
 catch(coordonneesHorsGrille& e){
-	cout << "Il y a un probleme.\n";
+	cout << "On est sorti de la grille. C'est pas bien. \n";
 }
 catch(coordonneesHorsBordure& e){
-	cout << "Il va falloir translater la grille\n";
+	cout << "Il va falloir translater la grille. APPELER LA BONNE METHODE.\n";
 }
     
 }
