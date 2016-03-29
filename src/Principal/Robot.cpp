@@ -13,7 +13,7 @@ struct coordonneesHorsGrille{};
 struct coordonneesHorsBordure{};
 
 /*CONSTRUCTEUR ET DESTRUCTEUR*/
-Robot::Robot(double resolution, int taille){
+Robot::Robot(double resolution = RESOLUTION, int taille = DIMENSION){
 
 	cout << "----------------------\n";
 	cout << "CONSTRUCTION DU ROBOT.\n";
@@ -52,8 +52,8 @@ Robot::~Robot(){
 
 /*DEFINITION DES METHODES*/
 void Robot::avancerRobot(double distance){
-    
-    try{
+
+	try{
 
 	/*CALCUL DE LA NOUVELLE POSITION*/
 	double deltaX = - math.abs(distance) * math.sin(orientation);
