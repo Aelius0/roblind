@@ -45,7 +45,7 @@ void *ThreadMoteur (void *)
                ; // RESET PROTOCOL ??
            }
        }
-       delay(10);
+       delay(5);
    }
 
    exit (0);
