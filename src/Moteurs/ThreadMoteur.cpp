@@ -7,7 +7,7 @@ void *ThreadMoteur (void *)
    using namespace std;
    cout<<"Thread moteur started !"<<endl;
    QCoreApplication a(argc, argv);
-   Ckangaroo baseRoulante("/dev/ttyAMA0");
+   baseRoulante("/dev/ttyAMA0");
    int _pos = 0;
    while(true)
    {
@@ -16,10 +16,10 @@ void *ThreadMoteur (void *)
            if (!err && *position >= lastCmd) {
                grille.avancerRobot(*position - _pos);
                if (robot.obstacleDevant()) {
-//                   baseRoulante.powerdown(); // TODO
-                   delete path;
-                   path = new vector<int>;
-//                   robot.calculer_chemin();
+                  if (!robot.calculer_chemin()) {
+                     // TODO : vibrer
+                     ;
+                  }
                } else {
                    _pos = *position;
                    if (path.size() == 0)
