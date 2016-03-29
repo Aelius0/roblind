@@ -185,7 +185,38 @@ int main(int argc, char *argv[])
 
 bool Robot::calculer_chemin(double direction)
 {
+	
+}
 
+bool Robot::obstacleDevant(int dist = 10)
+{
+    int dx = static_cast<int>(math.cos(orientation)*dist);
+    int dy = static_cast<int>(math.sin(orientation)*dist);
+    if (orientation < math.pi) {
+        if (orientation < math.pi/2 || orientation > (3/2)*math/pi)) {
+            for (int i = 0; i < dx; ++i)
+                for (int j = 0; j < dy; ++j)
+                    if (grille_espace.get(X + i, Y + j) > 0)
+                        return true;
+        }
+        else {
+            for (int i = dx; i < 0; ++i)
+                for (int j = 0; j < dy; ++j)
+                    if (grille_espace.get(X + i, Y + j) > 0)
+                        return true;
+        }
+    } else {
+        for (int j = 0; j < dy; ++j)
+            if (orientation < math.pi/2 || orientation > (3/2)*math.pi)) {
+                for (int i = 0; i < dx; ++i)
+                    if (grille_espace.get(X + i, Y + j) > 0)
+                        return true;
+            } else {
+                for (int i = dx; i < 0; ++i)
+                    if (grille_espace.get(X + i, Y + j) > 0)
+                        return true;
+            }
+    }
 }
 
 
