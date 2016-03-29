@@ -20,7 +20,7 @@ class Kinect
  public:
 Kinect();
 ~Kinect();
-//void Kinect::marquer_obstacles(int largeur, int hauteur, Robot r, Grille g);
+//void Kinect::marquer_obstacles(int largeur, int hauteur);
 int get_image(int argc, char **argv); //return 0 if ok else return 1
 
 //fonctions pour faire tourner la Kinect
