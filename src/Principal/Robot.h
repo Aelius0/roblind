@@ -76,17 +76,17 @@ class Robot
     int* chemin_evitement[];
 
     /*CONSTRUCTEUR ET DESTRUCTEUR*/
-    Robot(double,int);
+    Robot(double,int taille = 500);
     ~Robot();
 
     /*METHODES DE DEPLACEMENT*/
     void avancerRobot(double); // avec une distance absolue AJOUTE
     void translaterGrille(); // translate la grille quand le robot atteint la bordure de sortie AJOUTE
-    bool calculer_chemin(double direction);
+    bool calculer_chemin(double direction, double dist = 150);
     void actualiserLaser(double,double); //distance en metres, angle en radian
     void translaterGrille();
     bool obstacleDevant(int dist = 10);
-    double getDirection();
+    double getDirection(double dist = 150);
     
     /*METHODE PRINCIPALE*/
     void main();
@@ -97,5 +97,6 @@ extern Robot robot;
 extern queue< vector<int> > path;
 extern int speed = 2;
 extern int rotationSpeed = 2;
+extern bool modeGPS;
 
 #endif // __Robot_25af486e_96d7_45d7_b476_038f6f2f8d75_H_INCLUDED
