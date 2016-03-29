@@ -157,32 +157,6 @@ void Robot::translaterGrille(){
 
 }
 
-int main(int argc, char *argv[])
-{
-    cout << "Main robot code" << endl;
-    wiringPiSetup();
-    grille = new Grille(resolutionX,resolutionY,tailleX,tailleY);
-    pthread_create(&motThread, NULL, ThreadMoteur, NULL);
-    pthread_create(&capteurThread, NULL, ThreadCapteur, NULL);
-
-    pinMode(9, OUTPUT);
-    pinMode(2, INPUT);
-    pullUpDnControl(2, PUD_UP);
-
-    //int test_event = wiringPiISR(2, INT_EDGE_BOTH, &react);
-    
-    while(true)
-    {
-//        digitalWrite(9, !digitalRead(2));
-        cout << robot.X << endl;
-        delay(1000);
-    }
-
-    return 0;
-}
-
-
-
 bool Robot::calculer_chemin(double direction)
 {
 	
@@ -224,4 +198,8 @@ double Robot::getDirection(){
 	
 }
 
-
+bool Robot::stop() {
+	baseRoulante.powerdown();
+	delete path;
+	path = new queue< vector<int> >;
+}
