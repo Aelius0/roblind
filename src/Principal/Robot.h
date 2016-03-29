@@ -85,6 +85,7 @@ class Robot
     bool calculer_chemin(double direction);
     void actualiserLaser(double,double); //distance en metres, angle en radian
     void translaterGrille();
+    bool obstacleDevant(int dist = 10);
     
     /*METHODE PRINCIPALE*/
     void main();
