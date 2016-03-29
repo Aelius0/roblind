@@ -219,4 +219,9 @@ bool Robot::obstacleDevant(int dist = 10)
     }
 }
 
+double Robot::getDirection(){
+	
+	
+}
+
 
