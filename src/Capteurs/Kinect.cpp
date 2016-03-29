@@ -77,7 +77,10 @@ pthread_cond_t gl_frame_cond = PTHREAD_COND_INITIALIZER;
 int got_rgb = 0;
 int got_depth = 0;
 
-Kinect::Kinect(){}
+Kinect::Kinect(Robot robot)
+{
+	hauteur_Kinect=robot.hauteurKinect;
+}
 
 Kinect::~Kinect(){}
 
@@ -238,7 +241,7 @@ void* Kinect::freenect_threadfunc(void *arg)
 	return NULL;
 }
 
-/*void Kinect::marquer_obstacles(int largeur, int hauteur)
+void Kinect::marquer_obstacles(int largeur, int hauteur)
 {
     float const distanceDetection = 100; // DISTANCE DE DETECTION DES OBJETS (DEFINIE DANS MODIFYIMAGE()), EN CM
     float const largeurReelleImage = 1.09 * distanceDetection; // LARGEUR REELLE DE L'IMAGE A LA DISTANCE DE DETECTION, EN CM (1.09=2*TAN(57PI/360), LA KINECT AYANT UN ANGLE DE DETECTION DE 57°)
@@ -246,6 +249,7 @@ void* Kinect::freenect_threadfunc(void *arg)
     float distanceYPrime = 0; // DISTANCE DE L'OBJET PAR RAPPORT AU ROBOT, DANS LE REPERE ROBOT, EN Y'
     float distanceX = 0; // DISTANCE DE L'OBJET PAR RAPPORT AU ROBOT, DANS LE REPERE GRILLE, EN X
     float distanceY = 0; // DISTANCE DE L'OBJET PAR RAPPORT AU ROBOT, DANS LE REPERE GRILLE, EN Y
+float hauteur_obstacle = 0;
     for (int i=0; i<largeur; ++i) // i = COLONNE SUR L'IMAGE MODIFIEE, EN PIXEL
     {
         for (int j=0; j<hauteur; ++j) // j = LIGNE SUR L'IMAGE MODIFIEE, EN PIXEL
@@ -254,14 +258,17 @@ void* Kinect::freenect_threadfunc(void *arg)
             {
                 distanceXPrime = (i-largeur/2) * largeurReelleImage;
                 distanceYPrime = distanceDetection;
+		hauteur_obstacle = hauteur_Kinect+(j-hauteur/2)
                 // CHANGEMENT DE REPERE D'ANGLE -ROBOT.O
                 distanceX = distanceXPrime * cos(robot.o) + distanceYPrime * sin(robot.o);
                 distanceY = - distanceXPrime * sin(robot.o) + distanceYPrime * cos(robot.o);
-                robot.(*grille).grille_[static_cast<int>(robot.x + distanceX)][static_cast<int>(robot.y + distanceY)]=1; // OBSTACLE=1
+		if (hauteur_obstacle<HAUTEUR){
+                	robot.(*grille).grille_[static_cast<int>(robot.x + distanceX)][static_cast<int>(robot.y + distanceY)]=1; // OBSTACLE=1
+		}
             }
         }
     }
-}*/
+}
 
 void Kinect::modifyImage(int largeur, int longueur)
 {

@@ -15,10 +15,12 @@
 //#include "../Principal/Robot.h"
 //#include "../Principal/Grille.h"
 
+#define HAUTEUR 2000 //taille personne
+
 class Kinect
 {
  public:
-Kinect();
+Kinect(Robot robot);
 ~Kinect();
 //void Kinect::marquer_obstacles(int largeur, int hauteur);
 int get_image(int argc, char **argv); //return 0 if ok else return 1
@@ -34,6 +36,7 @@ void update_image();
 uint8_t* profondeur;
 uint8_t* couleur;
 cv::Mat mask;
+int hauteur_Kinect;
 
 //trouver largeur et longueur des images: uint8** ?
     
