@@ -87,6 +87,7 @@ class Robot
     void translaterGrille();
     bool obstacleDevant(int dist = 10);
     double getDirection(double dist = 150);
+    bool stop();
     
     /*METHODE PRINCIPALE*/
     void main();
