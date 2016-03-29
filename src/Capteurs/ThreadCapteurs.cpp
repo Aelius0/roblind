@@ -7,7 +7,7 @@
 //package header file
 #include"../Principal/Robot.h"
 
-void actualiserLaser(double inclinaison, double distance){
+void actualiserLaser(double inclinaison, double distance){ // CHECK
 
     /*CALCUL DE LA DISTANCE THEORIE ATTENDUE*/
     double distanceTheorique = hauteurLaser_ / cos(inclinaison);

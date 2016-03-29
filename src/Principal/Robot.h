@@ -33,35 +33,63 @@ using namespace std;
 class Robot
 {
  public:
-    bool en_evitement;
+    
+    /*COMPOSANTS DE LA CANNE*/
     Canne::Joystick* joystick;
     Canne::Bouton_arret* bouton_arret;
     Canne::Capteur_effort* capteur_effort;
     Canne::Capteur_presence* capteur_presence;
     Canne::Buzzer* buzzer;
     Canne::Vibreur* vibreur;
+    
+    /*CAPTEURS DE LA BASE MOBILE*/
     Kinect* kinect;
     GPS* gps;
     Batterie* batterie;
     Laser* laser_gauche;
     Laser* laser_droit;
-    Bouton_arret_urgence* bouton_arret_urgence;
-    Bouton_mode_guidage* bouton_mode_guidage;
-    double x;
-    double y;
-    double o; //orientation
-    int* chemin_evitement[];
-    // 0: vide  1: obstacle  2: trottoir  3: mur
-    Grille* grille_espace;
-	
     double hauteurLaser = 10; // TODO : fix
     double hauteurKinect = 15; // TODO : fix
+    
+    /*BOUTONS D'ARRET ET DE SELECTION DE MODE*/
+    Bouton_arret_urgence* bouton_arret_urgence;
+    Bouton_mode_guidage* bouton_mode_guidage;
+    bool en_evitement;
+    
+    /*ATTRIBUTS DE POSITION ET DE DEPLACEMENT*/
+    double X; // abscisse
+    double Y; // ordonnee
+    double orientation; //orientation (EN RADIANS)
+    double vitesse; // vitesse du roblind dans la direction courante (orientation)
+    int caseX; // abscisse de la case correspondante dans la grille AJOUTE
+    int caseY; // ordonnee de la case correspondante dans la grille AJOUTE
+    // 0: vide  1: obstacle  2: trottoir  3: mur
+    Grille* grille; // grille des obstacles
+    
+    /*PARAMETRES LIES A LA TRANSLATION DE LA GRILLE*/
+    double bordureSortie; // bordure a partir de laquelle translater la grille AJOUTE
+    double bordureEntree; // bordure de reapparition du robot apres translation AJOUTE
+    int caseInitialeXY; // abscisse et ordonnee de la case de reapparition AJOUTE
+    double positionInitialeXY; // abscisse et ordonnee initiale du robot AJOUTE
+    
+    /*TRAJECTOIRE CALCULEE*/
+    int* chemin_evitement[];
 
-    void avancerRobot(int dist);
-    void main();
-    void marquer_bloque(int x, int y);
-    void marquer_libre(int x, int y);
+    /*CONSTRUCTEUR ET DESTRUCTEUR*/
+    Robot(double,int);
+    ~Robot();
+
+    /*METHODES DE DEPLACEMENT*/
+    void avancerRobot(double); // avec une distance absolue AJOUTE
+    void translaterGrille(); // translate la grille quand le robot atteint la bordure de sortie AJOUTE
     bool calculer_chemin(double direction);
+    void actualiserLaser(double,double); //distance en metres, angle en radian
+    void translaterGrille();
+    bool obstacleDevant(int dist = 10);
+    double getDirection();
+    
+    /*METHODE PRINCIPALE*/
+    void main();
 
 }; //end class Robot
 
