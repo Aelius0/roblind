@@ -86,6 +86,7 @@ class Robot
     void actualiserLaser(double,double); //distance en metres, angle en radian
     void translaterGrille();
     bool obstacleDevant(int dist = 10);
+    double getDirection();
     
     /*METHODE PRINCIPALE*/
     void main();
