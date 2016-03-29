@@ -76,7 +76,7 @@ class Robot
     int* chemin_evitement[];
 
     /*CONSTRUCTEUR ET DESTRUCTEUR*/
-    Robot(double,int taille = DIMENSION);
+    Robot(double resolution = RESOLUTION, int taille = DIMENSION);
     ~Robot();
 
     /*METHODES DE DEPLACEMENT*/
