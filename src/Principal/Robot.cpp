@@ -157,9 +157,13 @@ void Robot::translaterGrille(){
 
 }
 
-bool Robot::calculer_chemin(double direction)
+bool Robot::calculer_chemin(double direction = getDirection(), double dist = 150)
 {
+	stop();
 	
+	int xa = static_cast<int>(x + dist*math.cos(o));
+	int ya = static_cast<int>(y + dist*math.sin(o));
+	parse_path(static_cast<int>(x), static_cast<int>(y), xa, ya);
 }
 
 bool Robot::obstacleDevant(int dist = 10)
