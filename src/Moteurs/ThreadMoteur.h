@@ -11,7 +11,7 @@ int lastCmdType = -1;
 int err = 0;
 bool active = 0;
 mode m;
-
+extern CKangaroo baseRoulante;
 void *ThreadMoteur (void *); //thread de lecture et d'ecriture de la carte de commande des moteurs
 
 
