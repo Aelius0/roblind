@@ -42,7 +42,10 @@ void *ThreadMoteur (void *)
                }
            }
            else {
-               ; // RESET PROTOCOL ??
+               if (!robot.calculer_chemin()) {
+                  // TODO : vibrer
+                  ;
+               }
            }
        }
        delay(5);
