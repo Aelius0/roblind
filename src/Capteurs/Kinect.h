@@ -25,9 +25,9 @@ int get_image(int argc, char **argv); //return 0 if ok else return 1
 
 //fonctions pour faire tourner la Kinect
 void modifyImage(int largeur, int longueur);
-void* freenect_threadfunc(void *arg);
-void rgb_cb(freenect_device *dev, void *rgb, uint32_t timestamp);
-void depth_cb(freenect_device *dev, void *v_depth, uint32_t timestamp);
+static void* freenect_threadfunc(void *arg);
+static void rgb_cb(freenect_device *dev, void *rgb, uint32_t timestamp);
+static void depth_cb(freenect_device *dev, void *v_depth, uint32_t timestamp);
 void update_image();
 
  private:
