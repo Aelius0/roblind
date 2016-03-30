@@ -1,33 +1,32 @@
 #ifndef KANGAROO_H
 #define KANGAROO_H
 #include "serialport.h"
-#include "stdlib.h"
-#include <QString>
+#include <stdlib.h>
+
 enum mode
 {
     moteur1=0x31,moteur2=0x32,drive=0x44,turn=0x54
 };
+
 enum unite
 {
-    mm=142,cm=14231,m=1423077 // mm = 14 ?
+    mm=38,cm=383,m=38312,degre=97
 };
 
 class Ckangaroo
 {
+
 public:
     Ckangaroo(const char * portName);
+    ~Ckangaroo();
 
     bool allerEn (int distance , int speed, unite u);
-    bool tourner (double angle , double speed);
-    void setMixedMode(double distanceDrive , double speedDrive , double rotation , double speedTurn);
+    bool tourner (double angle);
 
     int getPosition (mode m,int &position);
-
-    void getSpeed (mode m);
-    double getPositionMax (mode m);
-    double getPositonMin (mode m);
-    bool powerdown(const char* m);
-
+    int getPositionMax (mode m, int &positionMax); // retourne le range de position maximal
+    int getPositionMin (mode m , int &positionMin); //retourne le range de position minimal
+    int getSpeed (mode m, int &speed); //retourne la vitesse
 
 
     CSerialPort m_serialPort;
@@ -35,6 +34,9 @@ public:
 
      bool init();
      bool start(mode m);
+     bool powerdown(mode m);
+     void downZero();
+
 
 };
 

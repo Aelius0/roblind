@@ -8,7 +8,7 @@
  */
 
 //owner package header file
-#include "Canne.h"
+#include "canne.h"
 
 
 namespace Canne {

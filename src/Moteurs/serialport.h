@@ -1,10 +1,11 @@
 #ifndef SERIALPORT_H
 #define SERIALPORT_H
-#include <wiringPi.h>
-#include <wiringSerial.h>
+#include "/home/mecatro/Raspberry/usr/include/wiringPi.h"
+#include "/home/mecatro/Raspberry/usr/include/wiringSerial.h"
 #include <string.h>
 #include <sstream>
 #include <iostream>
+#include <QString>
 
 using namespace std;
 
@@ -16,12 +17,12 @@ private :
 
 public:
     CSerialPort();
-    int open(const char *device, int baud);
+    int open(const char * device, int baud);
     void close();
     bool putchar (char c);
-    bool puts (const char *command);
+    bool puts (const char * command);
     int dataAvailable();
-    bool getchar(char * car);
+    bool getchar(char *car);
     bool gets(char *reponse, unsigned int taille);
     void flush ();
 };
