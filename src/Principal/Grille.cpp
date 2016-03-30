@@ -166,7 +166,6 @@ public:
 	}
 
 	void set(int i, int j, nature_sol type){
-
 		try{
 			if(i>=0 && i<taillex_ && j>=0 && j<tailley_){
 				grille_[i][j]=type;

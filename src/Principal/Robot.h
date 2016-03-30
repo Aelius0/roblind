@@ -60,6 +60,7 @@ class Robot
     void avancerRobot(int dist);
     void main();
     bool calculer_chemin(double direction);
+    bool obstacleDevant(int dist = 10);
 
 }; //end class Robot
 

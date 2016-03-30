@@ -49,3 +49,34 @@ bool Robot::calculer_chemin(double direction)
 }
 
 
+bool Robot::obstacleDevant(int dist = 10)
+{
+    double angle = robot.o * 2 * math.pi / 360;
+    int dx = static_cast<int>(math.cos(angle)*dist);
+    int dy = static_cast<int>(math.sin(angle)*dist);
+    if (o < 180) {
+        if (o < 90 || o > 270) {
+            for (int i = 0; i < dx; ++i)
+                for (int j = 0; j < dy; ++j)
+                    if (grille_espace.get(x + i, y + j) > 0)
+                        return true;
+        }
+        else {
+            for (int i = dx; i < 0; ++i)
+                for (int j = 0; j < dy; ++j)
+                    if (grille_espace.get(x + i, y + j) > 0)
+                        return true;
+        }
+    } else {
+        for (int j = 0; j < dy; ++j)
+            if (o < 90 || o > 270) {
+                for (int i = 0; i < dx; ++i)
+                    if (grille_espace.get(x + i, y + j) > 0)
+                        return true;
+            } else {
+                for (int i = dx; i < 0; ++i)
+                    if (grille_espace.get(x + i, y + j) > 0)
+                        return true;
+            }
+    }
+}
