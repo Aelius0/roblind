@@ -57,9 +57,9 @@ class Robot
     bool en_evitement;
     
     /*ATTRIBUTS DE POSITION ET DE DEPLACEMENT*/
-    double X; // abscisse
-    double Y; // ordonnee
-    double orientation; //orientation (EN RADIANS)
+    double x; // abscisse
+    double y; // ordonnee
+    double o; //orientation (EN RADIANS)
     double vitesse; // vitesse du roblind dans la direction courante (orientation)
     int caseX; // abscisse de la case correspondante dans la grille AJOUTE
     int caseY; // ordonnee de la case correspondante dans la grille AJOUTE
