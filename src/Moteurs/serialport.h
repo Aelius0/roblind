@@ -1,7 +1,7 @@
 #ifndef SERIALPORT_H
 #define SERIALPORT_H
-#include "/home/mecatro/Raspberry/usr/include/wiringPi.h"
-#include "/home/mecatro/Raspberry/usr/include/wiringSerial.h"
+#include <wiringPi.h>
+#include <wiringSerial.h>
 #include <string.h>
 #include <sstream>
 #include <iostream>

@@ -38,14 +38,16 @@ class Robot
 {
  public:
     /*COMPOSANTS DE LA CANNE*/
-    CCanne canne;
+    CCanne* m_canne;
+
+    /*BASE ROULANTE*/
+    Cbaseroulante* baseRoulante;
     
     /*CAPTEURS DE LA BASE MOBILE*/
     Kinect* kinect;
     GPS* gps;
     Batterie* batterie;
-    Laser* laser_gauche;
-    Laser* laser_droit;
+    lidarLite* m_lidarLite;
     double hauteurLaser = 10; // TODO : fix
     double hauteurKinect = 15; // TODO : fix
     

@@ -20,7 +20,10 @@ Robot::Robot(double resolution = RESOLUTION, int taille = DIMENSION){
 
 	/*CREATION DE LA GRILLE*/
 	grille = new Grille(resolution,taille); // sert à repérer les obstacles
-    canne = new CCanne();
+
+    	m_canne = new CCanne();
+  	m_baseRoulante= new Cbaseroulante("/dev/ttyAMA0",27);
+    	m_lidarLite = new lidarLite();
 
 	/*INITIALISATION DU PLACEMENT DU ROBOT*/
 	// On place le robot au milieu de la grille.
@@ -48,11 +51,49 @@ Robot::~Robot(){
 	cout << "---------------------------------\n";
 	cout << "DESTRUCTION DU ROBOT\n";
 	delete grille;
-    delete canne;
+   	delete m_canne;
+	delete m_baseRoulante;
+	delete m_lidarLite;
 	cout << "Fin de la destruction du robot.\n";
 }
 
+
+
 /*DEFINITION DES METHODES*/
+bool Robot::allerEn()
+{
+   position p;
+    p = m_canne->m_joystick->getPosition();
+
+    if ( p == 0) // avancer
+    {
+         m_baseRoulante->allerEn(100,avancer,1,cm);
+    }
+
+    if (p == 1) //reculer
+    {
+        m_baseRoulante->allerEn(100,reculer,1,cm);
+    }
+
+    if (p == 2) //aller à gauche
+    {
+        m_baseRoulante->tourner(90);
+        m_baseRoulante->allerEn(100,avancer,1,cm);
+    }
+
+    if (p == 3) //aller a droite
+    {
+        m_baseRoulante->tourner(-90);
+        m_baseRoulante->allerEn(100,avancer,1,cm);
+    }
+
+    if (p == 4) //stop
+    {
+        m_baseRoulante->stop();
+    }
+}
+
+
 void Robot::avancerRobot(double distance){
 
 	try{

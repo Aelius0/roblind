@@ -20,10 +20,10 @@ bool Ckangaroo::init()
     {
 
         start(drive);
-            m_serialPort.puts("D, UNITS 26704 mm = 711 lines\r\n");
+            m_serialPort.puts("D, UNITS 628 mm = 160000 lines\r\n");
             m_serialPort.puts("D,p0s0\r\n");
         start(turn);
-            m_serialPort.puts("T, UNITS 36000 degrees = 2384 lines\r\n");
+            m_serialPort.puts("T, UNITS 360 degrees = 221040 lines\r\n");
             m_serialPort.puts("T,p0s0\r\n");
     }
     return retour;
@@ -107,7 +107,7 @@ bool Ckangaroo::allerEn(int distance, int speed, unite u)
 
 }
 
-bool Ckangaroo::tourner(double angle)
+bool Ckangaroo::tourner(int angle)
 {
 
     char commande[100]={0};

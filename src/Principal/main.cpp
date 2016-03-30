@@ -1,4 +1,4 @@
-
+#include <QCoreApplication>
 #include "Robot.h"
 #include "../Moteurs/ThreadMoteur.h"
 #include "../Capteurs/ThreadCapteurs.h"
@@ -35,9 +35,10 @@ void react_unheld() {
     sendSignal = BIP;
 }
 
+// Thread principal
 int main(int argc, char *argv[])
 {
-    cout << "Main robot code" << endl;
+    QCoreApplication a(argc, argv);
     wiringPiSetup();
     robot();
     active = 1;
@@ -55,7 +56,7 @@ int main(int argc, char *argv[])
     {
         switch(sendSignal) {
             case VIBRER:
-                robot.canne->vibrer();
+                robot.m_canne->vibrer();
                 break;
             case BIP:
                 // TODO : buzzer
@@ -63,9 +64,10 @@ int main(int argc, char *argv[])
                 break;
         }
 //        digitalWrite(9, !digitalRead(2));
-        cout << robot.x << endl;
+//        cout << robot.x << endl;
         delay(10);
     }
 
-    return 0;
+    exit (0);
+    return a.exec();
 }

@@ -21,7 +21,7 @@ public:
     ~Ckangaroo();
 
     bool allerEn (int distance , int speed, unite u);
-    bool tourner (double angle);
+    bool tourner (int angle);
 
     int getPosition (mode m,int &position);
     int getPositionMax (mode m, int &positionMax); // retourne le range de position maximal
