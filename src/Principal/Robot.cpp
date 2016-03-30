@@ -24,15 +24,15 @@ Robot::Robot(double resolution = RESOLUTION, int taille = DIMENSION){
 	/*INITIALISATION DU PLACEMENT DU ROBOT*/
 	// On place le robot au milieu de la grille.
 	X=taille*resolution/2;
-	caseX=floor(X/resolution);
+	caseX=floor(x/resolution);
 
 	Y=taille*resolution/2;
-	caseY=floor(Y/resolution);
+	caseY=floor(y/resolution);
 
 	positionInitialeXY = taille*resolution/2;
 	caseInitialeXY = floor(taille/2);
 
-	orientation=0;
+	o=0;
 	vitesse=0;
 
 	/*DEFINITON DES BORDURES D'ENTREE ET DE SORTIE*/
@@ -56,23 +56,23 @@ void Robot::avancerRobot(double distance){
 	try{
 
 	/*CALCUL DE LA NOUVELLE POSITION*/
-	double deltaX = - math.abs(distance) * math.sin(orientation);
-	X+=deltaX;
+	double deltaX = - math.abs(distance) * math.sin(o);
+	x+=deltaX;
 
-	double deltaY = + math.abs(distance) * math.cos(orientation);
-	X+=deltaY;
+	double deltaY = + math.abs(distance) * math.cos(o);
+	y+=deltaY;
 
 	/*ACTUALISATION DE LA CASE*/
-	caseX=math.floor(X/(grille->getResolution()));
-	caseY=math.floor(Y/(grille->getResolution()));
+	caseX=math.floor(x/(grille->getResolution()));
+	caseY=math.floor(y/(grille->getResolution()));
 
 	/*VERIFICATION DE LA NOUVELLE POSITION*/
 	double tailleGrille = (grille->getTaille())*(grille->getResolution());
-	if(X<0 || X>tailleGrille){throw coordonneesHorsGrille();}
-	else if(Y<0 || Y>tailleGrille){throw coordonneesHorsGrille();}
+	if(x<0 || x>tailleGrille){throw coordonneesHorsGrille();}
+	else if(y<0 || y>tailleGrille){throw coordonneesHorsGrille();}
 
-	if(X<bordureSortie || X>tailleGrille-bordureSortie){throw coordonneesHorsBordure();}
-	else if(Y<bordureSortie || Y>tailleGrille-bordureSortie){throw coordonneesHorsBordure();}
+	if(x<bordureSortie || x>tailleGrille-bordureSortie){throw coordonneesHorsBordure();}
+	else if(y<bordureSortie || y>tailleGrille-bordureSortie){throw coordonneesHorsBordure();}
 
 	}
 	
@@ -100,8 +100,8 @@ void Robot::actualiserLaser(double distMesuree, double inclinaison){
 	// Distance négative si l'obstacle est à gauche
 
 	/*REPERAGE DE LA POSITION ET DE LA CASE*/
-	double Xobstacle = X + distObstacle * math.cos(orientation) ;
-	double Yobstacle = Y + distObstacle * math.sin(orientation) ;
+	double Xobstacle = x + distObstacle * math.cos(o) ;
+	double Yobstacle = y + distObstacle * math.sin(o) ;
 
 	int caseObstacleX = floor(Xobstacle/grille->getResolution());
 	int caseObstacleY = floor(Yobstacle/grille->getResolution());
@@ -126,8 +126,8 @@ void Robot::translaterGrille(){
 	cout << "TRANSLATION DE LA GRILLE\n";
 
 	/*CALCUL DES COORDONNEES D'ENTREE DESIREES*/
-	double deltaX = X - positionInitialeXY;
-	double deltaY = Y - positionInitialeXY;
+	double deltaX = x - positionInitialeXY;
+	double deltaY = y - positionInitialeXY;
 
 	double numerateurRapport = (grille->getTailleGrille()/2)-bordureEntree;
 	double denominateurRapport = max(math.abs(deltaX),math.abs(deltaY));
@@ -148,9 +148,9 @@ void Robot::translaterGrille(){
 	grille->translaterRepereGrille(translationCaseX,translationCaseY);
 
 	/*ACTUALISATION DES POSITIONS DU ROBOT*/
-	X = Xentree;
+	x = Xentree;
 	caseX = caseXentree;
-	Y = Yentree;
+	y = Yentree;
 	caseY = caseYentree;
 
 	cout << "-------------------------------------\n";
@@ -168,30 +168,30 @@ bool Robot::calculer_chemin(double direction = getDirection(), double dist = 150
 
 bool Robot::obstacleDevant(int dist = 10)
 {
-    int dx = static_cast<int>(math.cos(orientation)*dist);
-    int dy = static_cast<int>(math.sin(orientation)*dist);
-    if (orientation < math.pi) {
-        if (orientation < math.pi/2 || orientation > (3/2)*math/pi)) {
+    int dx = static_cast<int>(math.cos(o)*dist);
+    int dy = static_cast<int>(math.sin(o)*dist);
+    if (o < math.pi) {
+        if (o < math.pi/2 || o > (3/2)*math/pi)) {
             for (int i = 0; i < dx; ++i)
                 for (int j = 0; j < dy; ++j)
-                    if (grille_espace.get(X + i, Y + j) > 0)
+                    if (grille_espace.get(x + i, y + j) > 0)
                         return true;
         }
         else {
             for (int i = dx; i < 0; ++i)
                 for (int j = 0; j < dy; ++j)
-                    if (grille_espace.get(X + i, Y + j) > 0)
+                    if (grille_espace.get(x + i, y + j) > 0)
                         return true;
         }
     } else {
         for (int j = 0; j < dy; ++j)
-            if (orientation < math.pi/2 || orientation > (3/2)*math.pi)) {
+            if (o < math.pi/2 || o > (3/2)*math.pi)) {
                 for (int i = 0; i < dx; ++i)
-                    if (grille_espace.get(X + i, Y + j) > 0)
+                    if (grille_espace.get(x + i, y + j) > 0)
                         return true;
             } else {
                 for (int i = dx; i < 0; ++i)
-                    if (grille_espace.get(X + i, Y + j) > 0)
+                    if (grille_espace.get(x + i, y + j) > 0)
                         return true;
             }
     }
