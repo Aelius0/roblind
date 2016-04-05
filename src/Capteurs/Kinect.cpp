@@ -244,12 +244,13 @@ void* Kinect::freenect_threadfunc(void *arg)
 void Kinect::marquer_obstacles(int largeur, int hauteur)
 {
     float const distanceDetection = 100; // DISTANCE DE DETECTION DES OBJETS (DEFINIE DANS MODIFYIMAGE()), EN CM
-    float const largeurReelleImage = 1.09 * distanceDetection; // LARGEUR REELLE DE L'IMAGE A LA DISTANCE DE DETECTION, EN CM (1.09=2*TAN(57PI/360), LA KINECT AYANT UN ANGLE DE DETECTION DE 57°)
+    float const largeurReelleImage = 1.09 * distanceDetection; // LARGEUR REELLE DE L'IMAGE A LA DISTANCE DE DETECTION, EN CM (1.09=2*TAN(57PI/360), LA KINECT AYANT UN ANGLE HORIZONTAL DE DETECTION DE 57°)
+    float const hauteurReelleImage = 0.79 * distanceDetection; // HAUTEUR REELLE DE L'IMAGE A LA DISTANCE DE DETECTION, EN CM (0.79=2*TAN(43PI/360), LA KINECT AYANT UN ANGLE VERTICAL DE DETECTION DE 43°)
     float distanceXPrime = 0; // DISTANCE DE L'OBJET PAR RAPPORT AU ROBOT, DANS LE REPERE ROBOT, EN X'
     float distanceYPrime = 0; // DISTANCE DE L'OBJET PAR RAPPORT AU ROBOT, DANS LE REPERE ROBOT, EN Y'
     float distanceX = 0; // DISTANCE DE L'OBJET PAR RAPPORT AU ROBOT, DANS LE REPERE GRILLE, EN X
     float distanceY = 0; // DISTANCE DE L'OBJET PAR RAPPORT AU ROBOT, DANS LE REPERE GRILLE, EN Y
-float hauteur_obstacle = 0;
+    float hauteur_obstacle = 0;
     for (int i=0; i<largeur; ++i) // i = COLONNE SUR L'IMAGE MODIFIEE, EN PIXEL
     {
         for (int j=0; j<hauteur; ++j) // j = LIGNE SUR L'IMAGE MODIFIEE, EN PIXEL
@@ -258,7 +259,7 @@ float hauteur_obstacle = 0;
             {
                 distanceXPrime = (i-largeur/2) * largeurReelleImage;
                 distanceYPrime = distanceDetection;
-		hauteur_obstacle = hauteur_Kinect+(j-hauteur/2)
+		hauteur_obstacle = hauteur_Kinect+(j-hauteur/2) * hauteurReelleImage;
                 // CHANGEMENT DE REPERE D'ANGLE -ROBOT.O
                 distanceX = distanceXPrime * cos(robot.o) + distanceYPrime * sin(robot.o);
                 distanceY = - distanceXPrime * sin(robot.o) + distanceYPrime * cos(robot.o);
