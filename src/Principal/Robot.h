@@ -60,9 +60,9 @@ class Robot
     double x; // abscisse
     double y; // ordonnee
     double o; //orientation (EN RADIANS)
-    double vitesse; // vitesse du roblind dans la direction courante (orientation)
-    int caseX; // abscisse de la case correspondante dans la grille AJOUTE
-    int caseY; // ordonnee de la case correspondante dans la grille AJOUTE
+    double v; // vitesse du roblind dans la direction courante (orientation)
+    //int caseX; // abscisse de la case correspondante dans la grille AJOUTE
+    //int caseY; // ordonnee de la case correspondante dans la grille AJOUTE
     // 0: vide  1: obstacle  2: trottoir  3: mur
     Grille* grille; // grille des obstacles
     
@@ -76,7 +76,7 @@ class Robot
     int* chemin_evitement[];
 
     /*CONSTRUCTEUR ET DESTRUCTEUR*/
-    Robot(double resolution = RESOLUTION, int taille = DIMENSION);
+    Robot(int taille = DIMENSION, double resolution = RESOLUTION);
     ~Robot();
 
     /*METHODES DE DEPLACEMENT*/
