@@ -1,11 +1,15 @@
+/*INCLUSION DES BIBLIOTHEQUES*/
 #include <iostream>
 #include <cmath>
 #include <iomanip>
+/*INCLUSION DES HEADERS*/
 #include "Grille.h"
+/*NAMESPACES*/
 using namespace std;
 
 
-	Grille::Grille(double resolution,int taille){
+/*CONSTRUCTEUR ET DESTRUCTEUR*/
+	Grille::Grille(int nombreCases, double resolutionCase){
 
 		cout << "Construction de la grille.\n";
 
@@ -13,59 +17,91 @@ using namespace std;
 		 * X = ABSCISSE = INDICE DE LA COLONNE
 		 * Y = ORDONNEE = INDICE DE LA LIGNE
 		 * */
-		taille_=taille;
-		grille_ = new int*[taille_];
-		for(int i=0;i<taille_;i++){
-			grille_[i]=new int[taille_];
+		this->dimension=nombreCases;
+		grille = new int*[dimension];
+		for(int i=0;i<dimension;i++){
+			grille[i]=new int[dimension];
 		}
-		resolution_=resolution;
-		tailleGrille_ = taille_ * resolution_ ;
+		this->resolution=resolutionCase;
+		taille = dimension * resolution ;
 
 		/*INITIALISATION DE LA GRILLE*/
-		for(int i=0;i<taille_;i++){
-			for(int j=0;j<taille_;j++){
-				grille_[i][j]=RAS;
+		for(int i=0;i<dimension;i++){
+			for(int j=0;j<dimension;j++){
+				grille[i][j]=RAS;
 			}
 		}
 
 		cout << "La grille est construite.\n";
 	}
-
 	Grille::~Grille(){
 		cout << "Destruction de la grille.\n";
-		for(int i=0;i<taille_;i++){
-			delete grille_[i];
+		for(int i=0;i<dimension;i++){
+			delete grille[i];
 		}
-		delete grille_;
+		delete grille;
 	}
 
+/*GETTERS ET SETTERS*/
+	int Grille::get(int i, int j){
+		int result;
+		try{
+			if(i>=0 && i<dimension && j>=0 && j<dimension){
+				result = grille[i][j];
+			}
+			else{
+				throw incorrectCoordonnees();
+			}
+
+
+		}
+		catch(incorrectCoordonnees& e){
+			cout << "Les coordonnees rentrées sont incorrectes.\n";
+		}
+		return result;
+	}
+	void Grille::set(int i, int j, nature_sol type){
+
+		try{
+			if(i>=0 && i<dimension && j>=0 && j<dimension){
+				grille[i][j]=type;
+			}
+			else{
+				throw incorrectCoordonnees();
+			}
+		}
+		catch(incorrectCoordonnees& e){
+			cout << "Les coordonnees rentrées sont incorrectes.\n";
+		}
+	}
+
+/*METHODES GENERALES*/
 	void Grille::afficher(){
 
 		cout << "-----------------------\n";
 		cout << "AFFICHAGE DE LA GRILLE.\n";
 
-        for(int j=taille_-1;j>=0;--j){
+        for(int j=dimension-1;j>=0;--j){
         	cout << setw(4) << j << " |"; // Affichage de l'ordonnee
-            for(int i=0;i<taille_;++i){
-				cout << setw(3) << grille_[i][j];
+            for(int i=0;i<dimension;++i){
+				cout << setw(3) << grille[i][j];
 			}
 			cout << "\n";
 		}
 
         /*AFFICHAGE DE LA LIGNE DES ABSCISSES*/
         cout << "------";
-        for(int i=0;i<taille_;++i){
+        for(int i=0;i<dimension;++i){
         	cout << "---";
         }
         cout << "\n Y/X |";
-        for(int i=0;i<taille_;++i){
+        for(int i=0;i<dimension;++i){
         	cout << setw(3) << i;
         }
 
 		cout << "\nFIN DE L'AFFICHAGE DE LA GRILLE.\n";
 
 	}
-
 	void Grille::translaterRepereGrille(int translationx, int translationy){
 
 		/* IDEE : ON PARCOURT LE TABLEAU ET A CHAQUE CASE EST ATTRIBUEE SA VALEUR FINALE
@@ -88,54 +124,54 @@ using namespace std;
 
 		switch(etat){
 		case 1: //cout << "Etat 1\n";
-			for(int i=0;i<taille_;i++){
-					for(int j=taille_-1;j>=0;j--){
+			for(int i=0;i<dimension;i++){
+					for(int j=dimension-1;j>=0;j--){
 						if(i-translationx>=0
-						&& i-translationx<taille_
+						&& i-translationx<dimension
 						&& j-translationy>=0
-						&& j-translationy<taille_){
-							grille_[i][j]=grille_[i-translationx][j-translationy];
+						&& j-translationy<dimension){
+							grille[i][j]=grille[i-translationx][j-translationy];
 						}
-						else{grille_[i][j]=RAS;}
+						else{grille[i][j]=RAS;}
 					}
 				}
 				break;
 		case 2: //cout << "Etat 2\n";
-			for(int i=taille_-1;i>=0;i--){
-					for(int j=taille_-1;j>=0;j--){
+			for(int i=dimension-1;i>=0;i--){
+					for(int j=dimension-1;j>=0;j--){
 						if(i-translationx>=0
-						&& i-translationx<taille_
+						&& i-translationx<dimension
 						&& j-translationy>=0
-						&& j-translationy<taille_){
-							grille_[i][j]=grille_[i-translationx][j-translationy];
+						&& j-translationy<dimension){
+							grille[i][j]=grille[i-translationx][j-translationy];
 						}
-						else{grille_[i][j]=RAS;}
+						else{grille[i][j]=RAS;}
 					}
 				}
 				break;
 		case 3: //cout << "Etat 3\n";
-			for(int i=0;i<taille_;i++){
-					for(int j=0;j<taille_;j++){
+			for(int i=0;i<dimension;i++){
+					for(int j=0;j<dimension;j++){
 						if(i-translationx>=0
-						&& i-translationx<taille_
+						&& i-translationx<dimension
 						&& j-translationy>=0
-						&& j-translationy<taille_){
-							grille_[i][j]=grille_[i-translationx][j-translationy];
+						&& j-translationy<dimension){
+							grille[i][j]=grille[i-translationx][j-translationy];
 						}
-						else{grille_[i][j]=RAS;}
+						else{grille[i][j]=RAS;}
 					}
 				}
 				break;
 		case 4: //cout << "Etat 4\n";
-			for(int i=taille_-1;i>=0;i--){
-					for(int j=0;j<taille_;j++){
+			for(int i=dimension-1;i>=0;i--){
+					for(int j=0;j<dimension;j++){
 						if(i-translationx>=0
-						&& i-translationx<taille_
+						&& i-translationx<dimension
 						&& j-translationy>=0
-						&& j-translationy<taille_){
-							grille_[i][j]=grille_[i-translationx][j-translationy];
+						&& j-translationy<dimension){
+							grille[i][j]=grille[i-translationx][j-translationy];
 						}
-						else{grille_[i][j]=RAS;}
+						else{grille[i][j]=RAS;}
 					}
 				}
 				break;
@@ -144,37 +180,9 @@ using namespace std;
 
 	}
 
-	void Grille::set(int i, int j, nature_sol type){
-		try{
-			if(i>=0 && i<taille_ && j>=0 && j<taille_){
-				grille_[i][j]=type;
-			}
-			else{
-				throw incorrectCoordonnees();
-			}
-		}
-		catch(incorrectCoordonnees& e){
-			cout << "Les coordonnees rentrées sont incorrectes.\n";
-		}
-	}
-
-	int Grille::get(int i, int j){
-		int result;
-		try{
-			if(i>=0 && i<taille_ && j>=0 && j<taille_){
-				result = grille_[i][j];
-			}
-			else{
-				throw incorrectCoordonnees();
-			}
 
 
-		}
-		catch(incorrectCoordonnees& e){
-			cout << "Les coordonnees rentrées sont incorrectes.\n";
-		}
-		return result;
-	}
+
 
 
 
