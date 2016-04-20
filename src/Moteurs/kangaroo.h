@@ -10,7 +10,12 @@ enum mode
 
 enum unite
 {
-    mm=38,cm=383,m=38312,degre=97
+    mm=4,cm=34,m=3395,degre=7
+};
+
+enum vitesse
+{
+    km0=0, km05=200,km1=400,km15=600,km2=800,km25=1000,km3=1200,km35=1400,km4=1600,km45=1800,km5=2000
 };
 
 class Ckangaroo
@@ -20,8 +25,9 @@ public:
     Ckangaroo(const char * portName);
     ~Ckangaroo();
 
-    bool allerEn (int distance , int speed, unite u);
-    bool tourner (int angle);
+    bool allerEn (vitesse v ,int distance , unite u);
+    bool setVitesse (vitesse v);
+    bool tourner (vitesse v,int angle);
 
     int getPosition (mode m,int &position);
     int getPositionMax (mode m, int &positionMax); // retourne le range de position maximal
