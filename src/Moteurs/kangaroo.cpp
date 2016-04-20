@@ -23,7 +23,7 @@ bool Ckangaroo::init()
             m_serialPort.puts("D, UNITS 628 mm = 160000 lines\r\n");
             m_serialPort.puts("D,p0s0\r\n");
         start(turn);
-            m_serialPort.puts("T, UNITS 360 degrees = 221040 lines\r\n");
+            m_serialPort.puts("T, UNITS 360 degrees = 246400 lines\r\n");
             m_serialPort.puts("T,p0s0\r\n");
     }
     return retour;
@@ -80,8 +80,33 @@ void Ckangaroo::downZero()
 
 }
 
+bool Ckangaroo::setVitesse(vitesse v)
+{
 
-bool Ckangaroo::allerEn(int distance, int speed, unite u)
+    char commande[100]={0};
+    QString tempo;
+    bool retour  = false;
+    init();
+    start(drive);
+    if(m_isOpened)
+    {
+        strcpy(commande,"D,s");
+        tempo=QString::number(v);
+        strcat(commande,tempo.toStdString().c_str());
+        strcat(commande,"\r\n");
+        retour=m_serialPort.puts(commande);
+
+    }
+
+    return  retour;
+
+
+}
+
+
+
+
+bool Ckangaroo::allerEn(vitesse v, int distance, unite u)
 {
     char commande[100]={0};
     QString tempo;
@@ -95,8 +120,8 @@ bool Ckangaroo::allerEn(int distance, int speed, unite u)
         tempo=QString::number(distance);
         strcat(commande,tempo.toStdString().c_str());
         strcat(commande,"s");
-        speed=speed*384615;
-        tempo=QString::number(speed);
+
+        tempo=QString::number(v);
         strcat(commande,tempo.toStdString().c_str());
         strcat(commande,"\r\n");
         retour=m_serialPort.puts(commande);
@@ -107,7 +132,7 @@ bool Ckangaroo::allerEn(int distance, int speed, unite u)
 
 }
 
-bool Ckangaroo::tourner(int angle)
+bool Ckangaroo::tourner(vitesse v, int angle)
 {
 
     char commande[100]={0};
@@ -123,8 +148,8 @@ bool Ckangaroo::tourner(int angle)
         tempo=QString::number(angle);
         strcat(commande,tempo.toStdString().c_str());
         strcat(commande,"s");
-        speed=1*384615;
-        tempo=QString::number(speed);
+
+        tempo=QString::number(v);
         strcat(commande,tempo.toStdString().c_str());
         strcat(commande,"\r\n");
         retour=m_serialPort.puts(commande);
@@ -133,6 +158,7 @@ bool Ckangaroo::tourner(int angle)
 
 
 }
+
 
 
 
