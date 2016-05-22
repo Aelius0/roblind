@@ -3,8 +3,8 @@
 
 CCanne::CCanne(configCanne config)
 {
-    wiringPiSetup();
-    m_joystick= new Cjoystick(&m_ADS1015,config.confJoystick.x,config.confJoystick.y);
+    //wiringPiSetup();
+    m_joystick= new Cjoystick(&m_ADS1015,config.confJoystick.x,config.confJoystick.y, config.confJoystick.numPinBouton);
     m_vibreur= new CVibreur(config.numPinVibreur);
     m_buzzer = new CBuzzer(config.numPinBuzzer);
 

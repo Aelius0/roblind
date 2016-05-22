@@ -129,7 +129,8 @@ bool Ckangaroo::allerEn(vitesse v, int distance, unite u)
     }
 
     return  retour;
-
+    //droite = bas
+    // gauche = haut
 }
 
 bool Ckangaroo::tourner(vitesse v, int angle)
@@ -138,7 +139,7 @@ bool Ckangaroo::tourner(vitesse v, int angle)
     char commande[100]={0};
      QString tempo;
     bool retour  = true;
-    int speed = 0;
+
     init();
     start(turn);
     if(m_isOpened)
@@ -181,10 +182,11 @@ int Ckangaroo::getPosition(mode m,int &position)
         strcat(commande,",getp\r\n");
         if(m_serialPort.puts(commande))
         {
-            int i=0;
+            unsigned int i=0;
             do
             {
-                if(nb=m_serialPort.dataAvailable()!=-1)
+                nb=m_serialPort.dataAvailable();
+                if(nb!=-1)
                 {
                     m_serialPort.getchar(&reponse[i]);
                     i++;
@@ -229,10 +231,11 @@ int Ckangaroo::getSpeed(mode m, int &speed)
         strcat(commande,",gets\r\n");
         if(m_serialPort.puts(commande))
         {
-            int i=0;
+            unsigned int i=0;
             do
             {
-                if(nb=m_serialPort.dataAvailable()!=-1)
+                nb=m_serialPort.dataAvailable();
+                if(nb!=-1)
                 {
                     m_serialPort.getchar(&reponse[i]);
                     i++;
@@ -279,10 +282,11 @@ int Ckangaroo::getPositionMax (mode m, int &positionMax)
         strcat(commande,",getmax\r\n");
         if(m_serialPort.puts(commande))
         {
-            int i=0;
+            unsigned int i=0;
             do
             {
-                if(nb=m_serialPort.dataAvailable()!=-1)
+                nb=m_serialPort.dataAvailable();
+                if(nb!=-1)
                 {
                     m_serialPort.getchar(&reponse[i]);
                     i++;
@@ -330,10 +334,11 @@ int Ckangaroo::getPositionMin (mode m , int &positionMin)
         strcat(commande,",getmin\r\n");
         if(m_serialPort.puts(commande))
         {
-            int i=0;
+            unsigned int i=0;
             do
             {
-                if(nb=m_serialPort.dataAvailable()!=-1)
+                nb=m_serialPort.dataAvailable();
+                if(nb!=-1)
                 {
                     m_serialPort.getchar(&reponse[i]);
                     i++;

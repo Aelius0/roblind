@@ -6,12 +6,24 @@
 #include <stdint.h>
 #include <softPwm.h>
 #include <iostream>
+struct configAX13
+{
+    int pinServo1;
+    int pinServo2;
+
+
+};
+
 
 class AX13
-{
+{   
 public :
-    AX13();
+    AX13(int pin1, int pin2);
     void setAngle();
+    int m_pinServo1;
+    int m_pinServo2;
+
+
 
 };
 

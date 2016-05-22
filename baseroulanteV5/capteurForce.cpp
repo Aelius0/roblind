@@ -2,7 +2,7 @@
 
 CCapteurForce::CCapteurForce(Adafruit_ADS1015 * ads1015, unsigned char channel)
 {
-    wiringPiSetup();
+    //wiringPiSetup();
     m_ads1015=ads1015;
     m_adc=channel;
 

@@ -5,7 +5,7 @@ using namespace std;
 
 Cjoystick:: Cjoystick(Adafruit_ADS1015 * ads1015, analogIn channelX, analogIn channelY, int pinBouton)
 {
-    wiringPiSetup();
+    //wiringPiSetup();
     m_pinBouton=pinBouton;
     pinMode(m_pinBouton,INPUT);
    // pullUpDnControl(m_pinBouton,PUD_OFF);
@@ -36,32 +36,26 @@ position Cjoystick::getPosition()
     x=getX();
     y=getY();
 
-
-
-    if(x>1650 && x<1750 && y>1650 &&y<1750)
+    if(x>1650 && x<1750 && y>1650 && y<1750)
         p=centre;
 
-    if(x>3200&& x<3400 && y>1650 &&y<1750)
-        p=gauche;
-
-    if(x>=0 && x<10 && y>1650 &&y<1750)
+    if(x>=0 && x<10 && y>1650 && y<1750)
         p=droite;
 
-    if(x>1650 && x<1750 && y>3200 &&y<3400)
-        p=haut;
-
-    if(x>1650 && x<1750 && y>=0 && y<10)
-        p=bas;
-
-   /* if(x>17 && x < 2454 && y>2354 && y < 2454)
+    if(x>=0 && x < 10 && y>0 && y < 10)
         p=diagDroit;
 
-    if(x>746 && x < 846 && y>2354 && y < 2454)
-        p=diagGauche; */
+    if(x>=3200 && x<3400 && y>1650 && y<1750)
+        p=gauche;
 
-    //droite = bas
-    // gauche = haut
+    if(x>3200 && x < 3400 && y>0 && y < 10)
+        p=diagGauche;
 
+    if(x>1650 && x<1750 && y>3200 && y<3400)
+        p=bas;
+
+    if(x>1650 && x<1750 && y>=0 && y<10)
+        p=haut;
 
     return p;
 }

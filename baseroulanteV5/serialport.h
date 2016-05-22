@@ -6,6 +6,7 @@
 #include <sstream>
 #include <iostream>
 #include <QString>
+#include <unistd.h>
 
 using namespace std;
 

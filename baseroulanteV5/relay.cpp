@@ -2,7 +2,7 @@
 
 CRelay::CRelay(int numPin)
 {
-    wiringPiSetup();
+    //wiringPiSetup();
     m_numPin=numPin;
     pinMode(numPin,1);
 }

@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
                     } else
                     {
                         robot.m_canne->m_buzzer->silence();
-
+                        
                     }
 
                     if(robot.detecterObst())

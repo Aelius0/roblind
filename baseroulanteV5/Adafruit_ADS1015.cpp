@@ -1,6 +1,7 @@
 #include "Adafruit_ADS1015.h"
 #include<ctime>
 
+pthread_mutex_t Adafruit_ADS1015::mut;
 
 /**************************************************************************/
 /*!
@@ -102,14 +103,19 @@ adsGain_t Adafruit_ADS1015::getGain()
 
 
 
+  //mutex pour rendre l'ensemble thread-safe :
+  // il ne faut pas que deux threads accèdent en meme temps au port
+  pthread_mutex_lock(&Adafruit_ADS1015::mut);
   // Write config register to the ADC
-
   wiringPiI2CWriteReg16(m_fd, ADS1015_REG_POINTER_CONFIG ,config);
     usleep(10000);
   // Read the conversion results
   // Shift 12-bit results right 4 bits for the ADS1015
 
  valeur= (unsigned short)wiringPiI2CReadReg16(m_fd, ADS1015_REG_POINTER_CONVERT);
+ pthread_mutex_unlock(&Adafruit_ADS1015::mut);
+
+
  poidsFaible=valeur>>8;
  poidsFort=valeur<<8;
  valeur=poidsFaible|poidsFort;

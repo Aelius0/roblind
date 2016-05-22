@@ -76,63 +76,41 @@ int Cbaseroulante::recallerAngle(int alpha)
 
 etatBR Cbaseroulante::setVitesse (vitesse v, sens s  )
 {
-    int erreur = 0;
-    int vitesseReelle = 0;
-    int vitesseReelle_tm1=0;
+    //int erreur = 0;
 
-    int delta =0;
+
 
 
     m_status=notDefined;
     v=(vitesse)(v*(int)s);
     m_kangaroo->setVitesse(v);
 
-    do
+    /*do
      {
-       // vitesseReelle_tm1 = vitesseReelle;
-        //erreur = getVitesse(vitesseReelle,u);
+        erreur = getVitesse(v,u);
          if(erreur == 0xE3)
          {
-             //vitesseReelle = vitesseReelle_tm1;
 
              m_status = bloque;
              m_relay->TurnOn();
              usleep(1000);
              m_relay->TurnOff();
              usleep(1000);
-             m_kangaroo->init();
+             m_kangaroo->init();  // start directement ?
 
          }
-       /*  else
-         {
-
-             /*delta = abs(v - vitesseReelle);
-             if (delta <= 50)
-             {
-                 m_status = arrive;
-                 usleep(500);
-                 erreur = getVitesse(vitesseReelle,u);
-                 m_kangaroo->init();
-
-             }
 
 
+     }while (m_status != bloque && m_status != stope); */
 
-         } */
-
-     }while (m_status != arrive && m_status != bloque && m_status != stope);
 
 
     return m_status;
 
-
-
-
-
-
 }
 
-/*etatBR Cbaseroulante::allerEn (int distance, sens s , int speed, unite u)
+
+etatBR Cbaseroulante::allerEn (int distance, sens s , vitesse v, unite u)
 {
     int erreur = 0;
     int distanceReelle = 0;
@@ -144,7 +122,7 @@ etatBR Cbaseroulante::setVitesse (vitesse v, sens s  )
     v=(vitesse)(v*(int)s);
 
     distance*=s;
-    m_kangaroo->allerEn(distance,speed, u);
+    m_kangaroo->allerEn(v,distance, u);
 
     do
      {
@@ -158,7 +136,7 @@ etatBR Cbaseroulante::setVitesse (vitesse v, sens s  )
              usleep(1000);
              m_relay->TurnOff();
              usleep(1000);
-             m_kangaroo->init();
+             m_kangaroo->init(); // start directement ?
 
          }
          else
@@ -180,7 +158,7 @@ etatBR Cbaseroulante::setVitesse (vitesse v, sens s  )
 
     return m_status;
 
-}*/
+}
 
 etatBR Cbaseroulante::tourner(vitesse v, int alphaConsigne)
 {
@@ -191,6 +169,7 @@ etatBR Cbaseroulante::tourner(vitesse v, int alphaConsigne)
 
     m_status = notDefined;
     m_kangaroo->tourner(v,alphaConsigne);
+
     do
     {
         alphaReel_tm1 = alphaReel;
@@ -203,7 +182,7 @@ etatBR Cbaseroulante::tourner(vitesse v, int alphaConsigne)
             usleep(1000);
             m_relay->TurnOff();
             usleep(1000);
-            m_kangaroo->init();
+            m_kangaroo->init();  // start directement ?
         }
         else
         {

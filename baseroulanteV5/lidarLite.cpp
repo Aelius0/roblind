@@ -64,7 +64,7 @@ int lidarLite::lidar_init(bool dbg) {
 
 // Read distance in cm from LidarLite
 int lidarLite::lidar_read(int fd) {
-   int hiVal, loVal, i=0;
+   int hiVal, loVal; //i=0;
 
    // send "measure" command
    hiVal= wiringPiI2CWriteReg8(fd,m_measurReg,m_measurVal);

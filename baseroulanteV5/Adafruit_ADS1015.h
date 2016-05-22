@@ -3,7 +3,7 @@
 #include "wiringPiI2C.h"
 #include"wiringPi.h"
 #include "unistd.h"
-
+#include <pthread.h>
 enum analogIn
 {
     AIN0=0,
@@ -103,6 +103,8 @@ typedef enum
 
 class Adafruit_ADS1015
 {
+    static pthread_mutex_t mut;
+
 protected:
    // Instance-specific properties
    unsigned char   m_i2cAddress;

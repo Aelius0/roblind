@@ -16,13 +16,13 @@ struct configJoystick
 
 class Cjoystick
 {
-    Adafruit_ADS1015 * m_ads;
     unsigned char m_adcX;
     unsigned char m_adcY;
+    Adafruit_ADS1015 * m_ads;
     int m_pinBouton;
 
 public:
-    Cjoystick(Adafruit_ADS1015 *ads1015, analogIn x, analogIn y,int pinBouton=0);
+    Cjoystick(Adafruit_ADS1015 *ads1015, analogIn x, analogIn y,int pinBouton);
     int getX();
     int getY();
     position getPosition();

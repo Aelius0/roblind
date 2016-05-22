@@ -1,0 +1,2 @@
+#!/bin/bash          
+echo "THIS IS STUFF FOR THE FILE" >> index.txt

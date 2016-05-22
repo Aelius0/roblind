@@ -46,7 +46,7 @@ public:
     int getVitesse(int &speed,unite u);
     int getAngleTourne(int &angle);
     void stop();
-    etatBR allerEn (int distance, sens s , int speed, unite u);
+    etatBR allerEn (int distance, sens s , vitesse v, unite u);
     etatBR setVitesse (vitesse v, sens s);
     etatBR tourner (vitesse v,int alphaConsigne );
     int recallerAngle(int alpha);

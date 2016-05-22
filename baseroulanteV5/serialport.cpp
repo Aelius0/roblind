@@ -10,7 +10,7 @@ CSerialPort::CSerialPort()
 int CSerialPort::open(const char *device, int baud)
 {
     m_fd=serialOpen(device,baud);
-    wiringPiSetup();
+    //wiringPiSetup();
     return m_fd;
 }
 
@@ -20,6 +20,7 @@ void CSerialPort::close()
     if (m_fd != -1 )
     {
         serialClose(m_fd);
+
 
     }
 }
