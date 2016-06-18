@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DirectionsResponse>
+ <status>OK</status>
+ <route>
+  <summary>N302</summary>
+  <leg>
+   <step>
+    <travel_mode>WALKING</travel_mode>
+    <start_location>
+     <lat>48.8566778</lat>
+     <lng>2.3519559</lng>
+    </start_location>
+    <end_location>
+     <lat>48.8572874</lat>
+     <lng>2.3522935</lng>
+    </end_location>
+    <polyline>
+     <points>gieiHwjjMyBaA</points>
+    </polyline>
+    <duration>
+     <value>52</value>
+     <text>1 min</text>
+    </duration>
+    <html_instructions>Head &lt;b&gt;north&lt;/b&gt; on &lt;b&gt;Quai de l'Hôtel de ville&lt;/b&gt; toward &lt;b&gt;Rue de Rivoli&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>72</value>
+     <text>72 m</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>WALKING</travel_mode>
+    <start_location>
+     <lat>48.8572874</lat>
+     <lng>2.3522935</lng>
+    </start_location>
+    <end_location>
+     <lat>48.8550866</lat>
+     <lng>2.3616785</lng>
+    </end_location>
+    <polyline>
+     <points>ameiHyljMBQr@}EDQBUDWr@kFRuADYt@sEVcBf@mDj@eEb@oCNmADYd@aDFYViB</points>
+    </polyline>
+    <duration>
+     <value>543</value>
+     <text>9 mins</text>
+    </duration>
+    <html_instructions>Turn &lt;b&gt;right&lt;/b&gt; onto &lt;b&gt;Rue de Rivoli&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>729</value>
+     <text>0.7 km</text>
+    </distance>
+    <maneuver>turn-right</maneuver>
+   </step>
+   <step>
+    <travel_mode>WALKING</travel_mode>
+    <start_location>
+     <lat>48.8550866</lat>
+     <lng>2.3616785</lng>
+    </start_location>
+    <end_location>
+     <lat>48.8532657</lat>
+     <lng>2.3686957</lng>
+    </end_location>
+    <polyline>
+     <points>i_eiHoglMb@uAZw@ZeALc@n@gCFWXoAj@gC@Gj@_DViBNeA@i@@WFw@JgBD}@JuAB}@</points>
+    </polyline>
+    <duration>
+     <value>421</value>
+     <text>7 mins</text>
+    </duration>
+    <html_instructions>Continue onto &lt;b&gt;Rue Saint-Antoine&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>559</value>
+     <text>0.6 km</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>WALKING</travel_mode>
+    <start_location>
+     <lat>48.8532657</lat>
+     <lng>2.3686957</lng>
+    </start_location>
+    <end_location>
+     <lat>48.8504256</lat>
+     <lng>2.3808749</lng>
+    </end_location>
+    <polyline>
+     <points>}sdiHksmMA?AAA?AAAAAAAAAAEGCGEICIAIAK?K?K?I@G@G@G@EBGBE@E@A@?@A?A@?@A?A@?GgB?M?M?G?E@CDGFODIDGHEz@aBVk@BEHQHUFOHQFST_AR}@@ELq@Nw@Ny@Jm@Py@BMXeBX{ABQJk@L_A^eCD[ZqBTwAHi@Hk@DYd@sCJw@RwBBc@LiBD}B?I?Q</points>
+    </polyline>
+    <duration>
+     <value>770</value>
+     <text>13 mins</text>
+    </duration>
+    <html_instructions>At the roundabout, take the &lt;b&gt;4th&lt;/b&gt; exit onto &lt;b&gt;Rue du Faubourg Saint-Antoine&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>987</value>
+     <text>1.0 km</text>
+    </distance>
+    <maneuver>roundabout-right</maneuver>
+   </step>
+   <step>
+    <travel_mode>WALKING</travel_mode>
+    <start_location>
+     <lat>48.8504256</lat>
+     <lng>2.3808749</lng>
+    </start_location>
+    <end_location>
+     <lat>48.8504530</lat>
+     <lng>2.3837776</lng>
+    </end_location>
+    <polyline>
+     <points>ebdiHm_pMAC?A?A?CAE?E?K?O@}@@M?o@?a@?OC}F?eB</points>
+    </polyline>
+    <duration>
+     <value>168</value>
+     <text>3 mins</text>
+    </duration>
+    <html_instructions>Slight &lt;b&gt;left&lt;/b&gt; to stay on &lt;b&gt;Rue du Faubourg Saint-Antoine&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>213</value>
+     <text>0.2 km</text>
+    </distance>
+    <maneuver>turn-slight-left</maneuver>
+   </step>
+   <step>
+    <travel_mode>WALKING</travel_mode>
+    <start_location>
+     <lat>48.8504530</lat>
+     <lng>2.3837776</lng>
+    </start_location>
+    <end_location>
+     <lat>48.8513414</lat>
+     <lng>2.3985166</lng>
+    </end_location>
+    <polyline>
+     <points>ibdiHsqpM?[Ak@?_@?K?[?eA@}C@sD?}B?YAaF?yBAwAA}AAcB@[B_BFiD@_BAc@IeAQwBA[SeDSgCKuA[iDWiCKcA?ACUAICMMgAE]Iw@</points>
+    </polyline>
+    <duration>
+     <value>891</value>
+     <text>15 mins</text>
+    </duration>
+    <html_instructions>Continue onto &lt;b&gt;Rue de Montreuil&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>1091</value>
+     <text>1.1 km</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>WALKING</travel_mode>
+    <start_location>
+     <lat>48.8513414</lat>
+     <lng>2.3985166</lng>
+    </start_location>
+    <end_location>
+     <lat>48.8535321</lat>
+     <lng>2.4108379</lng>
+    </end_location>
+    <polyline>
+     <points>{gdiHwmsMc@gEK{@YiC]oD}AgOAKEc@]wDa@aEQcB_@kDo@iGMmAQaBU{BGi@C[AIAY</points>
+    </polyline>
+    <duration>
+     <value>719</value>
+     <text>12 mins</text>
+    </duration>
+    <html_instructions>Continue onto &lt;b&gt;Rue d'Avron&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>934</value>
+     <text>0.9 km</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>WALKING</travel_mode>
+    <start_location>
+     <lat>48.8535321</lat>
+     <lng>2.4108379</lng>
+    </start_location>
+    <end_location>
+     <lat>48.8539128</lat>
+     <lng>2.4129250</lng>
+    </end_location>
+    <polyline>
+     <points>qudiHwzuMUkBIs@MmA]qD</points>
+    </polyline>
+    <duration>
+     <value>128</value>
+     <text>2 mins</text>
+    </duration>
+    <html_instructions>Continue onto &lt;b&gt;Avenue de la Porte de Montreuil&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>158</value>
+     <text>0.2 km</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>WALKING</travel_mode>
+    <start_location>
+     <lat>48.8539128</lat>
+     <lng>2.4129250</lng>
+    </start_location>
+    <end_location>
+     <lat>48.8579970</lat>
+     <lng>2.4373095</lng>
+    </end_location>
+    <polyline>
+     <points>}wdiHwgvMPMFEFIPWJYBIBI@I@KBa@@YCUCU?AEWEMAAAEIQMOKMECAAAACAGCICEAE?EAE?K@OmAI}@Mc@IYSyBGi@QiBUeBAIy@mIWsBMsA]cDAMCYo@iGKeAKcAa@_EKcAO}AQ{AGo@MoASqBYcCMuAq@sGKcAKkAm@}FQuAe@}ESsBMiAKaA_@iDSoBG_AMiAGs@COCcABi@Ji@HY</points>
+    </polyline>
+    <duration>
+     <value>1535</value>
+     <text>26 mins</text>
+    </duration>
+    <html_instructions>At the roundabout, take the &lt;b&gt;3rd&lt;/b&gt; exit onto &lt;b&gt;N302&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>1912</value>
+     <text>1.9 km</text>
+    </distance>
+    <maneuver>roundabout-right</maneuver>
+   </step>
+   <step>
+    <travel_mode>WALKING</travel_mode>
+    <start_location>
+     <lat>48.8579970</lat>
+     <lng>2.4373095</lng>
+    </start_location>
+    <end_location>
+     <lat>48.8597277</lat>
+     <lng>2.4407399</lng>
+    </end_location>
+    <polyline>
+     <points>oqeiHe`{Mm@HA?AACECM}AsFIWgA_EQk@Qe@Q_@y@cB</points>
+    </polyline>
+    <duration>
+     <value>256</value>
+     <text>4 mins</text>
+    </duration>
+    <html_instructions>Turn &lt;b&gt;left&lt;/b&gt; onto &lt;b&gt;Rue du Capitaine Dreyfus&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>332</value>
+     <text>0.3 km</text>
+    </distance>
+    <maneuver>turn-left</maneuver>
+   </step>
+   <step>
+    <travel_mode>WALKING</travel_mode>
+    <start_location>
+     <lat>48.8597277</lat>
+     <lng>2.4407399</lng>
+    </start_location>
+    <end_location>
+     <lat>48.8601352</lat>
+     <lng>2.4408415</lng>
+    </end_location>
+    <polyline>
+     <points>i|eiHsu{MqAS</points>
+    </polyline>
+    <duration>
+     <value>38</value>
+     <text>1 min</text>
+    </duration>
+    <html_instructions>Slight &lt;b&gt;left&lt;/b&gt; onto &lt;b&gt;Avenue du Président Wilson&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>46</value>
+     <text>46 m</text>
+    </distance>
+    <maneuver>turn-slight-left</maneuver>
+   </step>
+   <step>
+    <travel_mode>WALKING</travel_mode>
+    <start_location>
+     <lat>48.8601352</lat>
+     <lng>2.4408415</lng>
+    </start_location>
+    <end_location>
+     <lat>48.8602564</lat>
+     <lng>2.4415927</lng>
+    </end_location>
+    <polyline>
+     <points>{~eiHgv{MJM?A@C?ABM?C?AACGSOc@G[GS</points>
+    </polyline>
+    <duration>
+     <value>62</value>
+     <text>1 min</text>
+    </duration>
+    <html_instructions>Turn &lt;b&gt;right&lt;/b&gt; toward &lt;b&gt;Rue du Capitaine Dreyfus&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>65</value>
+     <text>65 m</text>
+    </distance>
+    <maneuver>turn-right</maneuver>
+   </step>
+   <step>
+    <travel_mode>WALKING</travel_mode>
+    <start_location>
+     <lat>48.8602564</lat>
+     <lng>2.4415927</lng>
+    </start_location>
+    <end_location>
+     <lat>48.8606067</lat>
+     <lng>2.4434769</lng>
+    </end_location>
+    <polyline>
+     <points>s_fiH}z{MB]DiA@U@EAKAII]AEGWQq@Uw@Sy@</points>
+    </polyline>
+    <duration>
+     <value>104</value>
+     <text>2 mins</text>
+    </duration>
+    <html_instructions>Slight &lt;b&gt;right&lt;/b&gt; onto &lt;b&gt;Rue du Capitaine Dreyfus&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>150</value>
+     <text>0.2 km</text>
+    </distance>
+    <maneuver>turn-slight-right</maneuver>
+   </step>
+   <step>
+    <travel_mode>WALKING</travel_mode>
+    <start_location>
+     <lat>48.8606067</lat>
+     <lng>2.4434769</lng>
+    </start_location>
+    <end_location>
+     <lat>48.8632020</lat>
+     <lng>2.4489759</lng>
+    </end_location>
+    <polyline>
+     <points>yafiHwf|MYoAGUMq@O_AGc@Qk@CKGSGMMa@Yu@]y@MYi@qAIUo@{A_@}@cAaCa@w@MWkAuB</points>
+    </polyline>
+    <duration>
+     <value>434</value>
+     <text>7 mins</text>
+    </duration>
+    <html_instructions>Continue onto &lt;b&gt;Rue de Rosny&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>499</value>
+     <text>0.5 km</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>WALKING</travel_mode>
+    <start_location>
+     <lat>48.8632020</lat>
+     <lng>2.4489759</lng>
+    </start_location>
+    <end_location>
+     <lat>48.8637173</lat>
+     <lng>2.4488152</lng>
+    </end_location>
+    <polyline>
+     <points>_rfiHci}MAHAB?BABABCBABC@A@A?A@A?CAc@LOIKCIE</points>
+    </polyline>
+    <duration>
+     <value>54</value>
+     <text>1 min</text>
+    </duration>
+    <html_instructions>Turn &lt;b&gt;left&lt;/b&gt; onto &lt;b&gt;Place du Village de l'Amitié&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>67</value>
+     <text>67 m</text>
+    </distance>
+    <maneuver>turn-left</maneuver>
+   </step>
+   <step>
+    <travel_mode>WALKING</travel_mode>
+    <start_location>
+     <lat>48.8637173</lat>
+     <lng>2.4488152</lng>
+    </start_location>
+    <end_location>
+     <lat>48.8638127</lat>
+     <lng>2.4484513</lng>
+    </end_location>
+    <polyline>
+     <points>gufiHch}MQfA?@</points>
+    </polyline>
+    <duration>
+     <value>19</value>
+     <text>1 min</text>
+    </duration>
+    <html_instructions>Turn &lt;b&gt;left&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>29</value>
+     <text>29 m</text>
+    </distance>
+    <maneuver>turn-left</maneuver>
+   </step>
+   <duration>
+    <value>6194</value>
+    <text>1 hour 43 mins</text>
+   </duration>
+   <distance>
+    <value>7843</value>
+    <text>7.8 km</text>
+   </distance>
+   <start_location>
+    <lat>48.8566778</lat>
+    <lng>2.3519559</lng>
+   </start_location>
+   <end_location>
+    <lat>48.8638127</lat>
+    <lng>2.4484513</lng>
+   </end_location>
+   <start_address>Paris, France</start_address>
+   <end_address>Montreuil, France</end_address>
+  </leg>
+  <copyrights>Map data ©2016 Google</copyrights>
+  <overview_polyline>
+   <points>gieiHwjjMyBaABQx@oFpAoJz@mF~@qGdB}Ll@{DViBb@uAv@}B|@kDnAwFj@_DViBNeA@i@HoAPeDNsCCAGEMSMi@@i@H]HMDE@AGuB@_@Xi@HEz@aBZq@d@iAr@wCx@qEhAiG|@cGbCaPV{CLiBD}B?[AEAQBgBEmP@kG?mPEsKNeKKiBSsCg@mHg@_Gg@eFY}BsAeMcCgV_AyJq@oGeBuPOiBkA_LXSXa@Tw@Dm@Ao@CWKe@[i@UU[K]?YkCW}@cAsJaB_PsAuM}BgUeEca@sA}Ms@yGUiCKcACcABi@TcAo@HIUaEwNc@eAy@cBqASJO@E@WWw@Oo@LcCCUKc@cA{Da@eB]qBYoAK_@mA_DqB}EcB_Eo@oAkAuBAHAFINIDEAc@LOIUIQhA</points>
+  </overview_polyline>
+  <warning>Walking directions are in beta.    Use caution – This route may be missing sidewalks or pedestrian paths.</warning>
+  <bounds>
+   <southwest>
+    <lat>48.8504035</lat>
+    <lng>2.3519559</lng>
+   </southwest>
+   <northeast>
+    <lat>48.8638127</lat>
+    <lng>2.4489759</lng>
+   </northeast>
+  </bounds>
+ </route>
+ <geocoded_waypoint>
+  <geocoder_status>OK</geocoder_status>
+  <type>locality</type>
+  <type>political</type>
+  <place_id>ChIJD7fiBh9u5kcRYJSMaMOCCwQ</place_id>
+ </geocoded_waypoint>
+ <geocoded_waypoint>
+  <geocoder_status>OK</geocoder_status>
+  <type>locality</type>
+  <type>political</type>
+  <place_id>ChIJhe8OU0Vt5kcR8FvEsG18qqM</place_id>
+ </geocoded_waypoint>
+</DirectionsResponse>
